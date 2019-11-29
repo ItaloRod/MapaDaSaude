@@ -156,8 +156,6 @@ while ($rowProfissional = $query1->fetch(PDO::FETCH_OBJ)) {
 
 
             $sql11 = "SELECT DISTINCT cbo_descricao FROM $schemaCnes.elastic_sagu_cnes_egressos A WHERE cbo_descricao <> '' AND A.personid = " . $row->personid . " AND A.cbo_descricao = '" . $row->cbo_descricao . "'";
-
-            echo $sql11 . PHP_EOL;
             $query11 = $conSagu->query($sql11);
             while ($rowTerm = $query11->fetch(PDO::FETCH_OBJ)) {
                 $sqlTerm = "SELECT * FROM public.term WHERE term = '" . $rowTerm->cbo_descricao . "'";
@@ -169,6 +167,15 @@ while ($rowProfissional = $query1->fetch(PDO::FETCH_OBJ)) {
                 $conMap->exec($sqlInsert6);
             }
 
+
+
+            $sql12 = "SELECT id  FROM public.space WHERE name = '" . $row->estabelecimento_nomefantasia . "'";
+            $query12 = $conMap->query($sql12);
+            while ($rowTerm = $query12->fetch(PDO::FETCH_OBJ)) {
+                $sqlInsert6 = "INSERT INTO public.agent_relation (agent_id, object_type, object_id, type, has_control, create_timestamp, status)  
+                                VALUES ('" . $idAgent . "', 'MapasCulturais\Entities\Space', '" . $rowTerm->id . "', 'PROFISSIONAIS', 'FALSE', '" . $dataHora . "', '1')";
+                $conMap->exec($sqlInsert6);
+            }
 
             $indiceAgente++;
         }
