@@ -1,3 +1,4 @@
+<style src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></style>
 <?php
 if(!$app->isEnabled('seals'))
 	return;
@@ -19,7 +20,8 @@ $this->addRelatedSealsToJs($entity);
                     <h3><?php \MapasCulturais\i::_e("Selos Disponíveis");?></h3>
                     <div class="selos clearfix">
                         <div ng-if="!sealRelated(seal.id)" class="avatar-seal" ng-repeat="seal in seals" ng-class="{pending: seal.status < 0}" ng-click="createRelation(seal)">
-                            <img ng-src="{{avatarUrl(seal['@files:avatar.avatarMedium'].url)}}">
+                           
+                        <img ng-src="{{avatarUrl(seal['@files:avatar.avatarMedium'].url)}}">
                             <div class="descricao-do-selo">
                                 <h1><a href="{{seal.singleUrl}}" class="ng-binding">{{seal.name}}</a></h1>
                             </div>
@@ -30,8 +32,9 @@ $this->addRelatedSealsToJs($entity);
             <div class="selos clearfix">
                 <div class="avatar-seal ng-scope" ng-repeat="relation in relations" ng-class="{pending: relation.status < 0 || relation.toExpire == 0}">
                     <?php $idRelation =  '{{relation.id}}';?>
+                    
                     <a ng-href="<?php echo $app->createUrl('seal','sealrelation',[$idRelation]);?>" class="ng-binding">
-                        <img ng-src="{{avatarUrl(relation.seal.avatar.avatarMedium.url)}}">
+                        <img ng-src="{{avatarUrl(relation.seal.avatar.avatarMedium.url)}}">                        
                     </a>
                     <div class="botoes" ng-if="isEditable && canRelateSeal"><a class="delete hltip js-remove-item"  data-href="" data-target="" data-confirm-message="" title="<?php \MapasCulturais\i::esc_attr_e("Excluir selo");?>" ng-click="deleteRelation(relation,relation.seal.id)"></a></div>
                     <div class="descricao-do-selo">

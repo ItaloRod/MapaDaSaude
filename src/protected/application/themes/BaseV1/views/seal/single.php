@@ -33,7 +33,7 @@ $this->includeAngularEntityAssets($entity);
         <div class="header-content">
             <?php $this->applyTemplateHook('header-content','begin'); ?>
             
-            <?php $this->part('singles/avatar', ['entity' => $entity, 'default_image' => 'img/avatar--seal.png']); ?>
+            <?php $this->part('singles/avatar', ['entity' => $entity, 'default_image' => 'img/avatar-egresso.png']); ?>
 
             <?php $this->part('singles/name', ['entity' => $entity]) ?>
 
@@ -58,6 +58,7 @@ $this->includeAngularEntityAssets($entity);
 
     <div class="tabs-content">
         <?php $this->applyTemplateHook('tabs-content','begin'); ?>
+      
         <div id="sobre" class="aba-content">
             <div class="ficha-spcultura">
                 <p>

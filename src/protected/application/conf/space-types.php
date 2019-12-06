@@ -196,332 +196,44 @@ return array(
         )
     ),
 
-/**
- * Equipamentos Culturais
- */
-
     'items' => array(
-        \MapasCulturais\i::__('Espaços de Exibição de Filmes') => array(
-            'range' => array(10,19),
+        \MapasCulturais\i::__('Tipos') => array(
+            'range' => array(1,2000),
             'items' => array(
-                10 => array( 'name' => \MapasCulturais\i::__('Cine itinerante' )),
-                11 => array( 'name' => \MapasCulturais\i::__('Cineclube' )),
-                12 => array( 'name' => \MapasCulturais\i::__('Drive-in' )),
-                13 => array( 'name' => \MapasCulturais\i::__('Espaço Público Para Projeção de Filmes') ),
-                14 => array( 'name' => \MapasCulturais\i::__('Sala de cinema' )),
+                1 => array( 'name' => \MapasCulturais\i::__("CENTRAL DE ABASTECIMENTO" )),
+                2 => array( 'name' => \MapasCulturais\i::__("CENTRAL DE GESTAO EM SAUDE" )),
+                3 => array( 'name' => \MapasCulturais\i::__("CENTRAL DE NOTIFICACAO,CAPTACAO E DISTRIB DE ORGAOS ESTADUAL" )),
+                4 => array( 'name' => \MapasCulturais\i::__("CENTRAL DE REGULACAO DO ACESSO" )),
+                5 => array( 'name' => \MapasCulturais\i::__("CENTRAL DE REGULACAO MEDICA DAS URGENCIAS" )),
+                6 => array( 'name' => \MapasCulturais\i::__("CENTRO DE APOIO A SAUDE DA FAMILIA" )),
+                7 => array( 'name' => \MapasCulturais\i::__("CENTRO DE ATENCAO HEMOTERAPIA E OU HEMATOLOGICA" )),
+                8 => array( 'name' => \MapasCulturais\i::__("CENTRO DE ATENCAO PSICOSSOCIAL" )),
+                9 => array( 'name' => \MapasCulturais\i::__("CENTRO DE IMUNIZACAO" )),
+                10 => array( 'name' => \MapasCulturais\i::__("CENTRO DE PARTO NORMAL - ISOLADO" )),
+                11 => array( 'name' => \MapasCulturais\i::__("CENTRO DE SAUDE/UNIDADE BASICA" )),
+                12 => array( 'name' => \MapasCulturais\i::__("CLINICA/CENTRO DE ESPECIALIDADE" )),
+                13 => array( 'name' => \MapasCulturais\i::__("CONSULTORIO ISOLADO" )),
+                14 => array( 'name' => \MapasCulturais\i::__("FARMACIA" )),
+                15 => array( 'name' => \MapasCulturais\i::__("HOSPITAL/DIA - ISOLADO" )),
+                16 => array( 'name' => \MapasCulturais\i::__("HOSPITAL ESPECIALIZADO" )),
+                17 => array( 'name' => \MapasCulturais\i::__("HOSPITAL GERAL" )),
+                18 => array( 'name' => \MapasCulturais\i::__("LABORATORIO CENTRAL DE SAUDE PUBLICA LACEN" )),
+                19 => array( 'name' => \MapasCulturais\i::__("LABORATORIO DE SAUDE PUBLICA" )),
+                20 => array( 'name' => \MapasCulturais\i::__("POLICLINICA" )),
+                21 => array( 'name' => \MapasCulturais\i::__("POLO ACADEMIA DA SAUDE" )),
+                22 => array( 'name' => \MapasCulturais\i::__("POSTO DE SAUDE" )),
+                23 => array( 'name' => \MapasCulturais\i::__("PRONTO ATENDIMENTO" )),
+                24 => array( 'name' => \MapasCulturais\i::__("PRONTO SOCORRO ESPECIALIZADO" )),
+                25 => array( 'name' => \MapasCulturais\i::__("PRONTO SOCORRO GERAL" )),
+                26 => array( 'name' => \MapasCulturais\i::__("SERVICO DE ATENCAO DOMICILIAR ISOLADO(HOME CARE)" )),
+                27 => array( 'name' => \MapasCulturais\i::__("UNIDADE DE APOIO DIAGNOSE E TERAPIA (SADT ISOLADO)" )),
+                28 => array( 'name' => \MapasCulturais\i::__("UNIDADE DE ATENCAO A SAUDE INDIGENA" )),
+                29 => array( 'name' => \MapasCulturais\i::__("UNIDADE DE VIGILANCIA EM SAUDE" )),
+                30 => array( 'name' => \MapasCulturais\i::__("UNIDADE MISTA" )),
+                31 => array( 'name' => \MapasCulturais\i::__("UNIDADE MOVEL DE NIVEL PRE-HOSPITALAR NA AREA DE URGENCIA" )),
+                32 => array( 'name' => \MapasCulturais\i::__("UNIDADE MOVEL TERRESTRE" )),
+                33 => array( 'name' => \MapasCulturais\i::__("OUTROS" )),
             )
-        ),
-
-        \MapasCulturais\i::__('Bibliotecas') => array(
-            'range' => array(20,29),
-            'items' => array(
-                20 => array( 'name' => \MapasCulturais\i::__('Biblioteca Pública') ),
-                21 => array( 'name' => \MapasCulturais\i::__('Biblioteca Privada' )),
-                22 => array( 'name' => \MapasCulturais\i::__('Biblioteca Comunitária (incluí­dos os pontos de leitura)')),
-                23 => array( 'name' => \MapasCulturais\i::__('Biblioteca Escolar')),
-                24 => array( 'name' => \MapasCulturais\i::__('Biblioteca Nacional')),
-                25 => array( 'name' => \MapasCulturais\i::__('Biblioteca Universitária')),
-                26 => array( 'name' => \MapasCulturais\i::__('Biblioteca Especializada'))
-            )
-        ),
-
-        \MapasCulturais\i::__('Teatros') => array(
-            'range' => array(30,39),
-            'items' => array(
-                30 => array('name' => \MapasCulturais\i::__('Teatro Público')),
-                31 => array('name' => \MapasCulturais\i::__('Teatro Privado'))
-            )
-        ),
-
-        \MapasCulturais\i::__('Circos') => array(
-            'range' => array(90,99),
-            'items' => array(
-                90 => array( 'name' => \MapasCulturais\i::__('Circo Itinerante' )),
-                91 => array( 'name' => \MapasCulturais\i::__('Circo Fixo' )),
-                92 => array( 'name' => \MapasCulturais\i::__('Terreno para Circo') ),
-                93 => array( 'name' => \MapasCulturais\i::__('Circo Tradicional') ),
-                94 => array( 'name' => \MapasCulturais\i::__('Circo Moderno' )),
-            )
-        ),
-
-       \MapasCulturais\i::__('Centros Culturais') => array(
-            'range' => array(40,49),
-            'items' => array(
-                40 => array( 'name' => \MapasCulturais\i::__('Centro Cultural Público' )),
-                41 => array( 'name' => \MapasCulturais\i::__('Centro Cultural Privado' )),
-            )
-        ),
-
-       \MapasCulturais\i::__('Arquivos') => array(
-            'range' => array(50,59),
-            'items' => array(
-                50 => array( 'name' => \MapasCulturais\i::__('Arquivo Público') ),
-                51 => array( 'name' => \MapasCulturais\i::__('Arquivo Privado' )),
-            )
-        ),
-
-       \MapasCulturais\i::__('Museus') => array(
-            'range' => array(60,69),
-            'items' => array(
-                60 => array( 'name' => \MapasCulturais\i::__('Museu Público') ),
-                61 => array( 'name' => \MapasCulturais\i::__('Museu Privado' )),
-            )
-        ),
-
-        \MapasCulturais\i::__('Demais Equipamentos Culturais') => array(
-            'range' => array(100,199),
-            'items' => array(
-                100 => array( 'name' => \MapasCulturais\i::__('Galeria de arte') ),
-                101 => array( 'name' => \MapasCulturais\i::__('Livraria' )),
-                102 => array( 'name' => \MapasCulturais\i::__('Sebo' )),
-                103 => array( 'name' => \MapasCulturais\i::__('Videolocadora') ),
-                104 => array( 'name' => \MapasCulturais\i::__('Lan-house' )),
-                105 => array( 'name' => \MapasCulturais\i::__('Antiquário' )),
-                106 => array( 'name' => \MapasCulturais\i::__('Ateliê' )),
-                107 => array( 'name' => \MapasCulturais\i::__('Centro de artesanato') ),
-                108 => array( 'name' => \MapasCulturais\i::__('Casa de espetáculo' )),
-                109 => array( 'name' => \MapasCulturais\i::__('Danceteria' )),
-                110 => array( 'name' => \MapasCulturais\i::__('Estúdio' )),
-                111 => array( 'name' => \MapasCulturais\i::__('Concha acústica' )),
-                112 => array( 'name' => \MapasCulturais\i::__('Banca de jornal' )),
-                113 => array( 'name' => \MapasCulturais\i::__('Espaço para Eventos' )),
-                114 => array( 'name' => \MapasCulturais\i::__('Creative Bureau' )),
-                115 => array( 'name' => \MapasCulturais\i::__('Ponto de Leitura Afro' )),
-                116 => array( 'name' => \MapasCulturais\i::__('Centro Comunitário' )),
-                117 => array( 'name' => \MapasCulturais\i::__('Casa do Patrimônio' )),
-                125 => array( 'name' => \MapasCulturais\i::__('Ponto de Cultura' )),
-                118 => array( 'name' => \MapasCulturais\i::__('Usina Cultural' )),
-                119 => array( 'name' => \MapasCulturais\i::__('Praça dos esportes e da cultura') ),
-                120 => array( 'name' => \MapasCulturais\i::__('Espaço Mais Cultura' )),
-                121 => array( 'name' => \MapasCulturais\i::__('Sala de dança' )),
-                122 => array( 'name' => \MapasCulturais\i::__('Gafieira' )),
-                123 => array( 'name' => \MapasCulturais\i::__('Espaço para apresentação de dança' )),
-                126 => array( 'name' => \MapasCulturais\i::__('Centro cultural itinerante' )),
-                127 => array( 'name' => \MapasCulturais\i::__('Trio elétrico' )),
-                128 => array( 'name' => \MapasCulturais\i::__('Clube social' )),
-                129 => array( 'name' => \MapasCulturais\i::__('Centro de tradições') ),
-                130 => array( 'name' => \MapasCulturais\i::__('Sala Multiuso' )),
-                124 => array( 'name' => \MapasCulturais\i::__('Rádio Comunitária' )),
-                131 => array( 'name' => \MapasCulturais\i::__('Audioteca' )),
-                132 => array( 'name' => \MapasCulturais\i::__('Centro de Artes e Esportes Unificados - CEUs' )),
-                133 => array( 'name' => \MapasCulturais\i::__('Coreto' )),
-                134 => array( 'name' => \MapasCulturais\i::__('Ginásio Poliesportivo') ),
-                135 => array( 'name' => \MapasCulturais\i::__('Sala de Leitura' )),
-                136 => array( 'name' => \MapasCulturais\i::__('Pontos de Memória' )),
-                137 => array( 'name' => \MapasCulturais\i::__('Núcleos de Produção Digital' )),
-
-                199 => array( 'name' => \MapasCulturais\i::__('Outros Equipamentos Culturais' )), // adicionado na importação dos dados do Ceará para receber as endidades do tipo "equipamento"
-            )
-        ),
-
-       \MapasCulturais\i::__('Centros de Documentação') => array(
-            'range' => array(70,79),
-            'items' => array(
-                70 => array( 'name' => \MapasCulturais\i::__('Centro de Documentação Público') ),
-                71 => array( 'name' => \MapasCulturais\i::__('Centro de Documentação Privado' )),
-            )
-        ),
-
-       \MapasCulturais\i::__('Espaços Religiosos') => array(
-            'range' => array(80,89),
-            'items' => array(
-                80 => array( 'name' => \MapasCulturais\i::__('Templo' )),
-                81 => array( 'name' => \MapasCulturais\i::__('Terreiro' )),
-                82 => array( 'name' => \MapasCulturais\i::__('Mesquitas' )),
-                83 => array( 'name' => \MapasCulturais\i::__('Sinagoga' )),
-                84 => array( 'name' => \MapasCulturais\i::__('Igreja' )),
-                85 => array( 'name' => \MapasCulturais\i::__('Centro Espírita') ),
-              )
-        ),
-
-/**
- * Espaços de Formação Cultural
- */
-
-       \MapasCulturais\i::__('Instituições Públicas de Ensino Regular') => array(
-            'range' => array(300,399),
-            'items' => array(
-                300 => array( 'name' => \MapasCulturais\i::__('Instituição Pública de Ensino Regular Federal' )),
-                301 => array( 'name' => \MapasCulturais\i::__('Instituição Pública de Ensino Regular Estadual' )),
-                302 => array( 'name' => \MapasCulturais\i::__('Instituição Pública de Ensino Regular Municipal' )),
-                303 => array( 'name' => \MapasCulturais\i::__('Instituição Pública de Ensino Regular Distrital' )),
-              )
-        ),
-
-       \MapasCulturais\i::__(' Instituições Privadas de Ensino Regular') => array(
-            'range' => array(400,499),
-            'items' => array(
-                400 => array( 'name' => \MapasCulturais\i::__('Instituição Privada Particular' )),
-                401 => array( 'name' => \MapasCulturais\i::__('Instituição Privada Comunitária' )),
-                402 => array( 'name' => \MapasCulturais\i::__('Instituição Privada Confessional' )),
-                403 => array( 'name' => \MapasCulturais\i::__('Instituição Privada Filantrópica' )),
-              )
-        ),
-
-       \MapasCulturais\i::__('Instituições Públicas exclusivamente voltada para formação artistica e cultural') => array(
-            'range' => array(601,699),
-            'items' => array(
-                601 => array( 'name' => \MapasCulturais\i::__('Instituição Pública Federal exclusivamente voltada para formação artistica e cultural' )),
-                602 => array( 'name' => \MapasCulturais\i::__('Instituição Pública Estadual exclusivamente voltada para formação artistica e cultural' )),
-                603 => array( 'name' => \MapasCulturais\i::__('Instituição Pública Municipal exclusivamente voltada para formação artistica e cultural' )),
-                604 => array( 'name' => \MapasCulturais\i::__('Instituição Pública Distrital exclusivamente voltada para formação artistica e cultural' )),
-              )
-        ),
-
-       \MapasCulturais\i::__('Instituições Privadas exclusivamente voltada para formação artistica e cultural') => array(
-            'range' => array(700,799),
-            'items' => array(
-                700 => array( 'name' => \MapasCulturais\i::__('Instituição Privada Particular exclusivamente voltada para formação artistica e cultural' )),
-                701 => array( 'name' => \MapasCulturais\i::__('Instituição Privada Comunitária exclusivamente voltada para formação artistica e cultural' )),
-                702 => array( 'name' => \MapasCulturais\i::__('Instituição Privada Confessional exclusivamente voltada para formação artistica e cultural' )),
-                703 => array( 'name' => \MapasCulturais\i::__('Instituição Privada Filantrópica exclusivamente voltada para formação artistica e cultural' )),
-              )
-        ),
-
-       \MapasCulturais\i::__('Escolas livres') => array(
-            'range' => array(800,899),
-            'items' => array(
-                800 => array( 'name' => \MapasCulturais\i::__('Escola livre de Artes Cênicas' )),
-                801 => array( 'name' => \MapasCulturais\i::__('Escola livre de Artes Visuais' )),
-                802 => array( 'name' => \MapasCulturais\i::__('Escola livre de Audiovisual' )),
-                803 => array( 'name' => \MapasCulturais\i::__('Escola livre de Hip Hop' )),
-                804 => array( 'name' => \MapasCulturais\i::__('Escola livre de Cultura Digital' )),
-                805 => array( 'name' => \MapasCulturais\i::__('Escola livre de Música' )),
-                806 => array( 'name' => \MapasCulturais\i::__('Escola livre de Cultura Popular' )),
-                807 => array( 'name' => \MapasCulturais\i::__('Escola livre de Gestão Cultural' )),
-                808 => array( 'name' => \MapasCulturais\i::__('Escola livre de Pontinhos de cultura') ),
-                809 => array( 'name' => \MapasCulturais\i::__('Escola livre de Patrimônio' )),
-                810 => array( 'name' => \MapasCulturais\i::__('Escola livre de Design' )),
-              )
-        ),
-
-/**
- * Patrimônios Culturais
- */
-
-        \MapasCulturais\i::__('Bens culturais de natureza material') => array(
-            'range' => array(200, 299),
-            'items' => array(
-                200 => array( 'name' => \MapasCulturais\i::__('Bens culturais de natureza material' )),
-                201 => array( 'name' => \MapasCulturais\i::__('Bem Imóvel' )),
-                202 => array( 'name' => \MapasCulturais\i::__('Bem Arqueológico' )),
-                203 => array( 'name' => \MapasCulturais\i::__('Bem Paisagístico' )),
-                204 => array( 'name' => \MapasCulturais\i::__('Bem Móvel ou Integrado' )),
-                205 => array( 'name' => \MapasCulturais\i::__('Sitio Histórico' )),
-                206 => array( 'name' => \MapasCulturais\i::__('Documentação' )),
-                207 => array( 'name' => \MapasCulturais\i::__('Coleções' )),
-
-                210 => array( 'name' => \MapasCulturais\i::__('Bens culturais de natureza imaterial' )), // adicionado na importação dos dados do Ceará para receber as endidades do tipo "patrimonio-imaterial"
-
-                299 => array( 'name' => \MapasCulturais\i::__('Outros' )) // adicionado na importação dos dados do Ceará para receber as endidades do tipo "post"
-            )
-        ),
-
-        \MapasCulturais\i::__('Temporário') => array(
-            'range' => array(500,600),
-            'items' => array(
-                501 => array( 'name' => \MapasCulturais\i::__('Palco de Rua' )),
-            )
-        ),
-    )
-    /* EXEMPLOS DE METADADOS:
-
-    'cnpj' => array(
-        'label' => 'CNPJ',
-        'type' => 'text',
-        'validations' => array(
-            'unique' => 'Este CNPJ já está cadastrado em nosso sistema.',
-            'v::cnpj()' => 'O CNPJ é inválido.'
-        )
-    ),
-    'cpf' => array(
-        'label' => 'CPF',
-        'type' => 'text',
-        'validations' => array(
-            'required' => 'Por favor, informe o CPF.',
-            'v::cpf()' => 'O CPF é inválido.'
-        )
-    ),
-    'radio' => array(
-        'label' => 'Um exemplo de input radio',
-        'type' => 'radio',
-        'options' => array(
-            'valor1' => 'Label do valor 1',
-            'valor2' => 'Label do valor 2',
-        ),
-        'default_value' => 'valor1'
-    ),
-    'checkboxes' => array(
-        'label' => 'Um exemplo de grupo de checkboxes',
-        'type' => 'checkboxes',
-        'options' => array(
-            'valor1' => 'Label do Primeiro checkbox',
-            'valor2' => 'Label do Primeiro checkbox'
-        ),
-        'default_value' => array(),
-        'validations' => array(
-            'v::arrayType()->notEmpty()' => 'Você deve marcar ao menos uma opção.'
-        )
-    ),
-    'checkbox' => array(
-        'label' => 'Um exemplo de campo booleano com checkbox.',
-        'type' => 'checkbox',
-        'input_value' => 1,
-        'default_value' => 0
-    ),
-    'email' => array(
-        'label' => 'Email público para contato',
-        'type' => 'text',
-        'validations'=> array(
-            'v::email()' => 'O email informado é inválido.'
-        )
-    ),
-    'site' => array(
-        'label' => 'Site',
-        'type' => 'text',
-        'validations'=> array(
-            'v::url()' => 'A URL informada é inválida.'
-        )
-    ),
-    'estado' => array(
-        'label' => 'Estado de Residência',
-        'type' => 'select',
-        'options' => array(
-            ''   => '',
-            'AC' => 'Acre',
-            'AL' => 'Alagoas',
-            'AM' => 'Amazonas',
-            'AP' => 'Amapá',
-            'BA' => 'Bahia',
-            'CE' => 'Ceará',
-            'DF' => 'Distrito Federal',
-            'ES' => 'Espírito Santo',
-            'GO' => 'Goiás',
-            'MA' => 'Maranhão',
-            'MG' => 'Minas Gerais',
-            'MS' => 'Mato Grosso do Sul',
-            'MT' => 'Mato Grosso',
-            'PA' => 'Pará',
-            'PB' => 'Paraíba',
-            'PE' => 'Pernambuco',
-            'PI' => 'Piauí',
-            'PR' => 'Paraná',
-            'RJ' => 'Rio de Janeiro',
-            'RN' => 'Rio Grande do Norte',
-            'RO' => 'Rondônia',
-            'RR' => 'Roraima',
-            'RS' => 'Rio Grande do Sul',
-            'SC' => 'Santa Catarina',
-            'SE' => 'Sergipe',
-            'SP' => 'São Paulo',
-            'TO' => 'Tocantins',
-            ''   => '',
-            'OUT'   => 'Resido Fora do Brasil'
-        ),
-
-        'validations' => array(
-            "v::stringType()->in('AC','AL','AM','AP','BA','CE','DF','ES','GO','MA','MG','MS','MT','PA','PB','PE','PI','PR','RJ','RN','RO','RR','RS','SC','SE','SP','TO','OUT')" => 'O estado informado não existe.'
         )
     )
-     */
 );

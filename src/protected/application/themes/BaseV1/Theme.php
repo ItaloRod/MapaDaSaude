@@ -889,6 +889,7 @@ class Theme extends MapasCulturais\Theme {
             $this->jsObject['assets']['verifiedIcon'] = $this->asset('img/verified-icon.png', false);
             $this->jsObject['assets']['avatarAgent'] = $this->asset('img/avatar--agent.png', false);
             $this->jsObject['assets']['avatarSeal'] = $this->asset('img/avatar--seal.png', false);
+            $this->jsObject['assets']['avatarEgresso'] = $this->asset('img/avatar-egresso.png', false);
             $this->jsObject['assets']['avatarSpace'] = $this->asset('img/avatar--space.png', false);
             $this->jsObject['assets']['avatarEvent'] = $this->asset('img/avatar--event.png', false);
             $this->jsObject['assets']['avatarProject'] = $this->asset('img/avatar--project.png', false);
@@ -1986,15 +1987,6 @@ class Theme extends MapasCulturais\Theme {
     protected function _getFilters(){
         $filters = [
             'space' => [
-                'area' => [
-                    'label'=> $this->dict('taxonomies:area: name', false),
-                    'placeholder' => $this->dict('taxonomies:area: select', false),
-                    'type' => 'term',
-                    'filter' => [
-                        'param' => 'area',
-                        'value' => 'IN({val})'
-                    ]
-                ],
                 'tipos' => [
                     'label' => i::__('Tipos'),
                     'placeholder' => i::__('Selecione os tipos'),
@@ -2003,16 +1995,6 @@ class Theme extends MapasCulturais\Theme {
                         'param' => 'type',
                         'value' => 'IN({val})'
                     ]
-                ],
-                'acessibilidade' => [
-                    'label' => i::__('Acessibilidade'),
-                    'placeholder' => i::__('Exibir somente resultados com Acessibilidade'),
-                    'fieldType' => 'checkbox',
-                    'isArray' => false,
-                    'filter' => [
-                        'param' => 'acessibilidade',
-                        'value' => 'EQ(Sim)'
-                    ],
                 ],
                 'verificados' => [
                     'label' => $this->dict('search: verified results', false),

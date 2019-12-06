@@ -1,6 +1,6 @@
 (function(angular) {
 	"use strict";
-
+	console.log('deu')
 	var module = angular.module('entity.module.relatedSeals', [ 'ngSanitize' ]);
     
     var labels = MapasCulturais.gettext.relatedSeals;
@@ -153,7 +153,7 @@
 						            if(url)
 						                return url;
 						            else
-						                return MapasCulturais.assets.avatarSeal;
+						                return MapasCulturais.assets.avatarEgresso;
 						        };
 						        
 						        $scope.createRelation = function(entity){
@@ -201,6 +201,7 @@
 						        };
 
 								$scope.getLength = function(obj) {
+									
 									return Object.keys(obj).length;
 								};
 
