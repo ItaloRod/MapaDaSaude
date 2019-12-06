@@ -67,19 +67,19 @@
             <?php $this->applyTemplateHook('nav.main.agents','after'); ?>
         <?php endif; ?>
 
-        <?php if($app->isEnabled('projects')): ?>
-            <?php $this->applyTemplateHook('nav.main.projects','before'); ?>
+        <!-- <?php //if($app->isEnabled('projects')): ?>
+            <?php //$this->applyTemplateHook('nav.main.projects','before'); ?>
             <li id="entities-menu-project"
                 ng-class="{'active':data.global.filterEntity === 'project',
-                           'current-entity-parent':'<?php echo $this->controller->id;?>' == 'project'}"
+                           'current-entity-parent':'<?php //echo $this->controller->id;?>' == 'project'}"
                 ng-click="tabClick('project')">
-                <a href="<?php if ($this->controller->action !== 'search') echo $app->createUrl('site', 'search') . '##(global:(enabled:(project:!t),filterEntity:project,viewMode:list))'; ?>">
+                <a href="<?php //if ($this->controller->action !== 'search') echo $app->createUrl('site', 'search') . '##(global:(enabled:(project:!t),filterEntity:project,viewMode:list))'; ?>">
                     <div class="icon icon-project"></div>
-                    <div class="menu-item-label"><?php $this->dict('entities: Projects') ?></div>
+                    <div class="menu-item-label"><?php //$this->dict('entities: Projects') ?></div>
                 </a>
             </li>
-            <?php $this->applyTemplateHook('nav.main.projects','after'); ?>
-        <?php endif; ?>
+            <?php //$this->applyTemplateHook('nav.main.projects','after'); ?>
+        <?php //endif; ?> -->
             
         <?php if($app->isEnabled('opportunities')): ?>
             <?php $this->applyTemplateHook('nav.main.opportunities','before'); ?>
