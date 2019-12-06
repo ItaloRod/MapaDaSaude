@@ -1,4 +1,4 @@
 <?php
 return [
-    'auth.provider' => 'Fake'
+    'auth.provider' => '\MultipleLocalAuth\Provider'
 ];

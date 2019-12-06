@@ -359,12 +359,17 @@ return array(
 
     // if authprovider namespace is outside MapasCulturais\AuthProvider set the full namespace with the initial slash ex: \Full\Name\Space\AuthProvider
     //*
-    'auth.provider' => 'OpauthOpenId',
+    'auth.provider' => '\MultipleLocalAuth\Provider',
     'auth.config' => array(
-        'login_url' => 'http://id.mapasculturais.hacklab.com.br',
-        'logout_url' => 'http://id.mapasculturais.hacklab.com.br/accounts/logout/',
-        'salt' => 'LT_SECURITY_SALT_SECURITY_SALT_SECURITY_SALT_SECURITY_SALT_SECU',
-        'timeout' => '24 hours'
+        'salt' => env('AUTH_SALT', null),
+        'timeout' => '24 hours',
+        'strategies' => [
+            'Facebook' => array(
+                'app_id' => env('AUTH_FACEBOOK_APP_ID', null),
+                'app_secret' => env('AUTH_FACEBOOK_APP_SECRET', null),
+                'scope' => env('AUTH_FACEBOOK_SCOPE', 'email'),
+            )
+        ]
     ),
     // */
 
@@ -372,8 +377,9 @@ return array(
 
     ),
     'plugins' => [
-         'EvaluationMethodSimple' => ['namespace' => 'EvaluationMethodSimple'],
-//        'OriginSite'    => ['namespace' => 'OriginSite','config' => ['siteId' => @$_SERVER['HTTP_HOST']]]
+        'EvaluationMethodSimple' => ['namespace' => 'EvaluationMethodSimple'],
+        'MultipleLocalAuth' => ['namespace' => 'MultipleLocalAuth'],
+        //'OriginSite'    => ['namespace' => 'OriginSite','config' => ['siteId' => @$_SERVER['HTTP_HOST']]]
         //['namespace' => 'PluginNamespace', 'path' => 'path/to/plugin', 'config' => ['plugin' => 'config']]
     ],
 
