@@ -11,27 +11,36 @@
     $this->includeMapAssets();
     $this->includeAngularEntityAssets($relation);
 ?>
-
+<style>
+.seal-avatar-unique {
+    /* float: left; */
+    width: 15%;
+    margin-left: 15rem;
+    margin-right: auto;
+}
+</style>
 <article class="main-content seal">
     <!-- exibição dos avatares do selo e do agente -->
     <div class="display-seal-relation">
-        <div class="seal-avatar">
-            <a href="<?php echo $seal->getSingleUrl(); ?>">
-                <?php $this->part('singles/avatar-seal-relation', ['entity' => $seal, 'size'=> 'avatarMedium', 'default_image' => 'img/avatar--seal.png']); ?>
+        <div class="seal-avatar-unique">
+            <a href="<?php echo $seal->getSingleUrl(); ?>" title="Mais informações sobre o selo  <?php echo $seal->name; ?>">
+                <?php $this->part('singles/avatar-seal-relation', 
+                ['entity' => $seal, 'size'=> 'avatarMedium', 'default_image' => 'img/avatar-egresso.png']); ?>
             </a>
         </div>
-        <div class="agent-avatar">
-            <a href="<?php echo $relation->owner->getSingleUrl(); ?>" >
-                <?php $this->part('singles/avatar-seal-relation', ['entity' => $relation->owner, 'size'=> 'avatarMedium', 'default_image' => 'img/avatar--seal.png']); ?>
+        <!-- <div class="agent-avatar">
+            <a href="<?php //echo $relation->owner->getSingleUrl(); ?>" >
+                <?php //$this->part('singles/avatar-seal-relation', ['entity' => $relation->owner, 'size'=> 'avatarMedium', 'default_image' => 'img/avatar--seal.png']); ?>
             </a>                    
-        </div>
+        </div> -->
     </div>
         <div id="seal-info-container">
             <div id="seal-name">
                 <?php $this->applyTemplateHook('seal-name','before'); ?>
                 <h2>
                     <span class="js-editable" data-edit="name" data-original-title="<?php \MapasCulturais\i::esc_attr_e("Nome de exibição");?>" data-emptytext="<?php \MapasCulturais\i::esc_attr_e("Nome de exibição");?>">
-                        <a href="<?php echo $app->createUrl('seal', 'single', ['id' => $seal->id])?>"><?php echo $seal->name; ?></a>
+                        <a href="<?php echo $app->createUrl('seal', 'single', ['id' => $seal->id])?>">
+                        <?php echo $seal->name; ?></a>
                     </span>
                 </h2>
                 <?php $this->applyTemplateHook('seal-name','after'); ?>
