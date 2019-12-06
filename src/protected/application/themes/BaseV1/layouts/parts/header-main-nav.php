@@ -25,19 +25,19 @@
 
 <nav id="main-nav" class="clearfix">
     <ul class="menu entities-menu clearfix">
-        <?php if($app->isEnabled('events')): ?>
-            <?php $this->applyTemplateHook('nav.main.events','before'); ?>
+        <!-- <?php //if($app->isEnabled('events')): ?>
+            <?php //$this->applyTemplateHook('nav.main.events','before'); ?>
             <li id="entities-menu-event"
                 ng-class="{'active':data.global.filterEntity === 'event',
-                           'current-entity-parent':'<?php echo $this->controller->id;?>' == 'event'}"
+                           'current-entity-parent':'<?php //echo $this->controller->id;?>' == 'event'}"
                 ng-click="tabClick('event')">
-                <a href="<?php if ($this->controller->action !== 'search') echo $app->createUrl('site', 'search') . '##(global:(enabled:(event:!t),filterEntity:event))'; ?>">
+                <a href="<?php //if ($this->controller->action !== 'search') echo $app->createUrl('site', 'search') . '##(global:(enabled:(event:!t),filterEntity:event))'; ?>">
                     <div class="icon icon-event"></div>
-                    <div class="menu-item-label"><?php $this->dict('entities: Events') ?></div>
+                    <div class="menu-item-label"><?php //$this->dict('entities: Events') ?></div>
                 </a>
             </li>
-            <?php $this->applyTemplateHook('nav.main.events','after'); ?>
-        <?php endif; ?>
+            <?php //$this->applyTemplateHook('nav.main.events','after'); ?>
+        <?php //endif; ?> -->
 
         <?php if($app->isEnabled('spaces')): ?>
             <?php $this->applyTemplateHook('nav.main.spaces','before'); ?>
