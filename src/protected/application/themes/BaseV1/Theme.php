@@ -889,6 +889,7 @@ class Theme extends MapasCulturais\Theme {
             $this->jsObject['assets']['verifiedIcon'] = $this->asset('img/verified-icon.png', false);
             $this->jsObject['assets']['avatarAgent'] = $this->asset('img/avatar--agent.png', false);
             $this->jsObject['assets']['avatarSeal'] = $this->asset('img/avatar--seal.png', false);
+            $this->jsObject['assets']['avatarEgresso'] = $this->asset('img/avatar-egresso.png', false);
             $this->jsObject['assets']['avatarSpace'] = $this->asset('img/avatar--space.png', false);
             $this->jsObject['assets']['avatarEvent'] = $this->asset('img/avatar--event.png', false);
             $this->jsObject['assets']['avatarProject'] = $this->asset('img/avatar--project.png', false);
