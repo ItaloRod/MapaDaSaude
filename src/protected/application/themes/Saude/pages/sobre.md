@@ -1,7 +1,7 @@
 # Sobre o CE Saúde {#title}
 
-> Decreto 7508
-(http://www.planalto.gov.br/ccivil_03/_Ato2011-2014/2011/Decreto/D7508.htm)
+> Decreto 7508 - 
+[Planalto](http://www.planalto.gov.br/ccivil_03/_Ato2011-2014/2011/Decreto/D7508.htm) <br>
 >Art. 2º Para efeito deste Decreto, considera-se: <br>
 >V - Mapa da Saúde - descrição geográfica da distribuição de recursos humanos e de ações e serviços de saúde ofertados pelo SUS e pela iniciativa privada, considerando-se a capacidade instalada existente, os investimentos e o desempenho aferido a partir dos indicadores de saúde do sistema;
 
@@ -11,5 +11,5 @@ Um recurso tecnológico que se propõe, entre outros, a realizar o mapeamento do
 
 Através de painéis de acompanhamento de Políticas de Saúde do Estado do Ceará, apresentando por meio de gráficos e infográficos informações publicadas de maneira integral. Além de usufruir dos recursos de consultas oferecidos pelo sistema, os usuários também poderão colaborar na gestão da saúde do estado e seus municípios, enviando sugestões, comentários, elogios e críticas.
 
-Para saber mais acesse: 
+Para saber mais acesse:  
 [Mapas da Saúde](https://github.com/EscolaDeSaudePublica/MapaDaSaude)
