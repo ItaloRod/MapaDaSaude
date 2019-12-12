@@ -159,8 +159,25 @@ while ($rowProfissional = $query1->fetch(PDO::FETCH_OBJ)) {
                 $sqlInsertMeta7 = "INSERT INTO public.agent_meta (object_id, key, value) VALUES ('" . $idAgent . "', 'En_Estado', '" . $row->estabelecimento_uf . "' )";
                 $conMap->exec($sqlInsertMeta7);
 
+
+                $sql12 = "SELECT id  FROM public.space WHERE name = '" . $row->estabelecimento_nomefantasia . "'";
+                $query12 = $conMap->query($sql12);
+                while ($rowTerm = $query12->fetch(PDO::FETCH_OBJ)) {
+                    $sqlInsert6 = "INSERT INTO public.agent_relation (agent_id, object_type, object_id, type, has_control, create_timestamp, status)
+                                VALUES ('" . $idAgent . "', 'MapasCulturais\Entities\Space', '" . $rowTerm->id . "', '" . strtoupper($row->cbo_descricao) . "', 'FALSE', '" . $dataHora . "', '1')";
+                    $conMap->exec($sqlInsert6);
+                }
+
+                // migra selo egressos
+                $sqlInsertSeal = "INSERT INTO public.seal_relation
+                    (seal_id, object_id, create_timestamp, status, object_type, agent_id, owner_id, validate_date, renovation_request)
+                    VALUES ('2', '" . $idAgent . "', '" . $dataHora . "' , '1' , 'MapasCulturais\Entities\Agent' , '1' ,'" . $idAgent . "' ,
+                    '2029-12-08 00:00:00' , true)";
+                $conMap->exec($sqlInsertSeal);
+
             }
 
+            /*
 
             $sql11 = "SELECT DISTINCT cbo_descricao FROM $schemaCnes.elastic_sagu_cnes_egressos_residenciamedica A WHERE cbo_descricao <> '' AND A.personid = " . $row->personid . " AND A.cbo_descricao = '" . $row->cbo_descricao . "'";
             $query11 = $conSagu->query($sql11);
@@ -175,23 +192,7 @@ while ($rowProfissional = $query1->fetch(PDO::FETCH_OBJ)) {
                     $conMap->exec($sqlInsert6);
                 }
 
-            }
-
-
-            $sql12 = "SELECT id  FROM public.space WHERE name = '" . $row->estabelecimento_nomefantasia . "'";
-            $query12 = $conMap->query($sql12);
-            while ($rowTerm = $query12->fetch(PDO::FETCH_OBJ)) {
-                $sqlInsert6 = "INSERT INTO public.agent_relation (agent_id, object_type, object_id, type, has_control, create_timestamp, status)
-                                VALUES ('" . $idAgent . "', 'MapasCulturais\Entities\Space', '" . $rowTerm->id . "', '" . strtoupper($row->cbo_descricao) . "', 'FALSE', '" . $dataHora . "', '1')";
-                $conMap->exec($sqlInsert6);
-            }
-
-            // migra selo egressos
-            $sqlInsertSeal = "INSERT INTO public.seal_relation
-                    (seal_id, object_id, create_timestamp, status, object_type, agent_id, owner_id, validate_date, renovation_request)
-                    VALUES ('2', '" . $idAgent . "', '" . $dataHora . "' , '1' , 'MapasCulturais\Entities\Agent' , '1' ,'" . $idAgent . "' ,
-                    '2029-12-08 00:00:00' , true)";
-            $conMap->exec($sqlInsertSeal);
+            }*/
 
             $indiceAgente++;
         }
