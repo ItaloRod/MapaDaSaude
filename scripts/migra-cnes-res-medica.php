@@ -8,8 +8,7 @@ if (!$conSagu) {
 }
 
 
-
-$conMap = new PDO("pgsql:host=10.17.0.209;port=5470;dbname=mapas", "mapas", "mapas");
+$conMap = new PDO("pgsql:host=10.17.0.135;port=5470;dbname=mapas", "mapas", "mapas");
 $conMap->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 if (!$conMap) {
     echo 'não conectou' . PHP_EOL;
