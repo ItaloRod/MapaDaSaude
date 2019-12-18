@@ -30,11 +30,11 @@ return array(
 
     'mailer.templates' => [
         'welcome' => [
-            'title' => \MapasCulturais\i::__("Bem-vindo(a) ao Mapas Culturais"),
+            'title' => \MapasCulturais\i::__("Bem-vindo(a) ao Mapa da Saúde"),
             'template' => 'welcome.html'
         ],
         'last_login' => [
-            'title' => \MapasCulturais\i::__("Acesse a Mapas Culturais"),
+            'title' => \MapasCulturais\i::__("Acesse a Mapa da Saúde"),
             'template' => 'last_login.html'
         ],
         'new' => [
@@ -42,15 +42,15 @@ return array(
             'template' => 'new.html'
         ],
         'update_required' => [
-            'title' => \MapasCulturais\i::__("Acesse a Mapas Culturais"),
+            'title' => \MapasCulturais\i::__("Acesse a Mapa da Saúde"),
             'template' => 'update_required.html'
         ],
         'compliant' => [
-            'title' => \MapasCulturais\i::__("Denúncia - Mapas Culturais"),
+            'title' => \MapasCulturais\i::__("Denúncia - Mapa da Saúde"),
             'template' => 'compliant.html'
         ],
         'suggestion' => [
-            'title' => \MapasCulturais\i::__("Mensagem - Mapas Culturais"),
+            'title' => \MapasCulturais\i::__("Mensagem - Mapa da Saúde"),
             'template' => 'suggestion.html'
         ],
         'seal_toexpire' => [
@@ -87,8 +87,8 @@ return array(
     'app.dbUpdatesDisabled' => false,
     'app.defaultApiOutput' => 'json',
 
-    'app.siteName' => \MapasCulturais\i::__('Mapas Culturais'),
-    'app.siteDescription' => \MapasCulturais\i::__('O Mapas Culturais é uma plataforma livre para mapeamento cultural.'),
+    'app.siteName' => \MapasCulturais\i::__('Mapa da Saúde'),
+    'app.siteDescription' => \MapasCulturais\i::__('O Mapa da Saúde é uma plataforma livre para mapeamento cultural.'),
 
     'api.accessControlAllowOrigin' => '*',
 
@@ -299,7 +299,7 @@ return array(
     'app.useRegisteredAutoloadCache' => true,
     'app.registeredAutoloadCache.lifetime' => 0,
 
-    'app.useAssetsUrlCache' => true,
+    'app.useAssetsUrlCache' => false,
     'app.assetsUrlCache.lifetime' => 0,
 
     'app.useFileUrlCache' => true,
@@ -349,13 +349,6 @@ return array(
     // basically this tell to doctrine orm to use or not use a persistent cache if available
     // see: https://github.com/doctrine/doctrine2/blob/2.3/lib/Doctrine/ORM/Tools/Setup.php#LC160
     'doctrine.isDev' => false,
-
-    'doctrine.database' => array(
-        'dbname'    => 'mapasculturais',
-        'user'      => 'mapasculturais',
-        'password'  => 'mapasculturais',
-        'host'      => 'localhost',
-    ),
 
     // if authprovider namespace is outside MapasCulturais\AuthProvider set the full namespace with the initial slash ex: \Full\Name\Space\AuthProvider
     //*

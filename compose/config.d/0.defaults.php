@@ -33,7 +33,7 @@ switch(env('LOG_LEVEL', 'NOTICE')){
 }
 
 return [
-    'app.siteName' => env('SITE_NAME', 'Mapas Culturais'),
+    'app.siteName' => env('SITE_NAME', 'Mapa da Saúde'),
     'app.siteDescription' => env('SITE_DESCRIPTION', ''),
 
     'themes.active' => env('ACTIVE_THEME', 'MapasCulturais\Themes\BaseV1'),

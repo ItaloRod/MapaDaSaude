@@ -3,8 +3,8 @@ $config = include 'conf-base.php';
 
 return array_merge($config,
     [
-        'app.siteName' => \MapasCulturais\i::__('Nome do site'),
-        'app.siteDescription' => \MapasCulturais\i::__('Descrição do site'),
+        'app.siteName' => \MapasCulturais\i::__('Mapa da Saúde'),
+        'app.siteDescription' => \MapasCulturais\i::__('Bem-vindo(a) ao Mapa da Saúde'),
 
         /* configure e descomente as linhas abaixo para habilitar um tema personalizado */
         // 'namespaces' => array_merge( $config['namespaces'], ['Name\Space\Do\Tema' => '/caminho/absoluto/para/o/tema']),
@@ -13,8 +13,8 @@ return array_merge($config,
         'themes.assetManager' => new \MapasCulturais\AssetManagers\FileSystem([
             'publishPath' => BASE_PATH . 'assets/',
 
-            'mergeScripts' => true,
-            'mergeStyles' => true,
+            'mergeScripts' => false,
+            'mergeStyles' => false,
 
             'process.js' => 'uglifyjs {IN} -o {OUT} --source-map {OUT}.map --source-map-include-sources --source-map-url /assets/{FILENAME}.map -b -p ' . substr_count(BASE_PATH, '/'),
             'process.css' => 'uglifycss {IN} > {OUT} ',
@@ -58,11 +58,5 @@ return array_merge($config,
 //            'salt' => '',
 //            'timeout' => '24 hours'
 //        ],
-
-        'doctrine.database' => [
-            'dbname'    => 'mapas',
-            'user'      => 'vagrant',
-            'host'      => '',
-        ],
     ]
 );
