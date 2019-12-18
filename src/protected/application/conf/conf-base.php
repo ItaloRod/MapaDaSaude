@@ -30,11 +30,11 @@ return array(
 
     'mailer.templates' => [
         'welcome' => [
-            'title' => \MapasCulturais\i::__("Bem-vindo(a) ao Mapas Culturais"),
+            'title' => \MapasCulturais\i::__("Bem-vindo(a) ao Mapa da Saúde"),
             'template' => 'welcome.html'
         ],
         'last_login' => [
-            'title' => \MapasCulturais\i::__("Acesse a Mapas Culturais"),
+            'title' => \MapasCulturais\i::__("Acesse a Mapa da Saúde"),
             'template' => 'last_login.html'
         ],
         'new' => [
@@ -42,15 +42,15 @@ return array(
             'template' => 'new.html'
         ],
         'update_required' => [
-            'title' => \MapasCulturais\i::__("Acesse a Mapas Culturais"),
+            'title' => \MapasCulturais\i::__("Acesse a Mapa da Saúde"),
             'template' => 'update_required.html'
         ],
         'compliant' => [
-            'title' => \MapasCulturais\i::__("Denúncia - Mapas Culturais"),
+            'title' => \MapasCulturais\i::__("Denúncia - Mapa da Saúde"),
             'template' => 'compliant.html'
         ],
         'suggestion' => [
-            'title' => \MapasCulturais\i::__("Mensagem - Mapas Culturais"),
+            'title' => \MapasCulturais\i::__("Mensagem - Mapa da Saúde"),
             'template' => 'suggestion.html'
         ],
         'seal_toexpire' => [
@@ -87,8 +87,8 @@ return array(
     'app.dbUpdatesDisabled' => false,
     'app.defaultApiOutput' => 'json',
 
-    'app.siteName' => \MapasCulturais\i::__('Mapas Culturais'),
-    'app.siteDescription' => \MapasCulturais\i::__('O Mapas Culturais é uma plataforma livre para mapeamento cultural.'),
+    'app.siteName' => \MapasCulturais\i::__('Mapa da Saúde'),
+    'app.siteDescription' => \MapasCulturais\i::__('O Mapa da Saúde é uma plataforma livre para mapeamento cultural.'),
 
     'api.accessControlAllowOrigin' => '*',
 
@@ -134,20 +134,20 @@ return array(
     'app.useGoogleGeocode' => false,
     'app.googleApiKey'     => '',
 
-    //    'maps.center' => array(-23.54894, -46.63882), // são paulo
-    'maps.center' => array(-14.2400732, -53.1805018), // brasil
+    'maps.center' => array(-5.008866554677783, -39.69635009765625), // Ceará
+    //'maps.center' => array(-14.2400732, -53.1805018), // brasil
     'maps.maxClusterRadius' => 40,
     'maps.spiderfyDistanceMultiplier' => 1.3,
     'maps.maxClusterElements' => 6,
 
     'maps.geometryFieldQuery' => "ST_SimplifyPreserveTopology(geom, 0.001)",
 
-    'maps.zoom.default' => 5,
+    'maps.zoom.default' => 8,
     'maps.zoom.approximate' => 14,
     'maps.zoom.precise' => 16,
     'maps.zoom.max' => 18,
     'maps.zoom.min' => 5,
-    'maps.includeGoogleLayers' => false,
+    'maps.includeGoogleLayers' => true,
 
     'cep.endpoint'      => 'http://www.cepaberto.com/api/v2/ceps.json?cep=%s',
     'cep.token_header'  => 'Authorization: Token token="%s"',
@@ -299,7 +299,7 @@ return array(
     'app.useRegisteredAutoloadCache' => true,
     'app.registeredAutoloadCache.lifetime' => 0,
 
-    'app.useAssetsUrlCache' => true,
+    'app.useAssetsUrlCache' => false,
     'app.assetsUrlCache.lifetime' => 0,
 
     'app.useFileUrlCache' => true,
@@ -349,13 +349,6 @@ return array(
     // basically this tell to doctrine orm to use or not use a persistent cache if available
     // see: https://github.com/doctrine/doctrine2/blob/2.3/lib/Doctrine/ORM/Tools/Setup.php#LC160
     'doctrine.isDev' => false,
-
-    'doctrine.database' => array(
-        'dbname'    => 'mapasculturais',
-        'user'      => 'mapasculturais',
-        'password'  => 'mapasculturais',
-        'host'      => 'localhost',
-    ),
 
     // if authprovider namespace is outside MapasCulturais\AuthProvider set the full namespace with the initial slash ex: \Full\Name\Space\AuthProvider
     //*
