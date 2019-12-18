@@ -203,39 +203,33 @@ $this->entity = $entity;
                 </small>
             </li>
         </ul>
-    </div>
-    <!-- <select class="form-control" name="monthPermanence" id="monthPermanence">
-        <option selected value='0'>-- Selecione o Mês --</option>
-        <option value='1'>Janaury</option>
-        <option value='2'>February</option>
-        <option value='3'>March</option>
-        <option value='4'>April</option>
-        <option value='5'>May</option>
-        <option value='6'>June</option>
-        <option value='7'>July</option>
-        <option value='8'>August</option>
-        <option value='9'>September</option>
-        <option value='10'>October</option>
-        <option value='11'>November</option>
-        <option value='12'>December</option>
-    </select>
+        <div class="space"><br></div>
+        <h3>Comparativo com outro mês e ano,</h3>        
     <select class="form-control" name="monthPermanence" id="monthPermanence">
-        <option selected value='0'>-- Selecione o Ano --</option>
-        <option value='1'>Janaury</option>
-        <option value='2'>February</option>
-        <option value='3'>March</option>
-        <option value='4'>April</option>
-        <option value='5'>May</option>
-        <option value='6'>June</option>
-        <option value='7'>July</option>
-        <option value='8'>August</option>
-        <option value='9'>September</option>
-        <option value='10'>October</option>
-        <option value='11'>November</option>
-        <option value='12'>December</option>
+        <option selected value='0'>-- Selecione o Mês --</option>
+        <option value='1'>Janeiro</option>
+        <option value='2'>Fevereiro</option>
+        <option value='3'>Março</option>
+        <option value='4'>Abril</option>
+        <option value='5'>Maio</option>
+        <option value='6'>Junho</option>
+        <option value='7'>Julho</option>
+        <option value='8'>Agosto</option>
+        <option value='9'>Setembro</option>
+        <option value='10'>Outubro</option>
+        <option value='11'>Novembro</option>
+        <option value='12'>Dezembro</option>
     </select>
-    <button class="btn btn-success">Consultar</button> -->
-    <div class="box" id="iframeBoxIntegrasus">
+    <select class="form-control" name="yearPermanence" id="yearPermanence">
+        <option selected value='0'>-- Selecione o Ano --</option>
+        <option value='2018'>2018</option>
+        <option value='2019'>2019</option>
+       
+    </select>
+    <button class="btn btn-success" id="btnComparativeIntegraSus">Consultar</button>
+    
+    </div>
+   <div class="box" id="iframeBoxIntegrasus">
         
     </div>
 
@@ -292,8 +286,6 @@ $(document).ready(function () {
             break;
         case 'HOSPITAL GERAL DR WALDEMAR ALCANTARA':
             sigla = 'HGWA';
-            $("#iframeBoxIntegrasus").show();
-            $("#iframeBoxIntegrasus").append('<iframe src="https://indicadores.integrasus.saude.ce.gov.br/indicadores/indicadores-hospitalares/emergencia-maior-24-horas-filtro/'+sigla+'?modoExibicao=painel" width="100%" height="700px"></iframe>')
             break;
         case 'HOSPITAL REGIONAL DO SERTAO CENTRAL':
             sigla = 'HRSC';
@@ -333,6 +325,12 @@ function numberToReal(numero) {
     numero[0] = numero[0].split(/(?=(?:...)*$)/).join('.');
     return numero.join(',');
 }
+
+$("#btnComparativeIntegraSus").click(function (e) { 
+    e.preventDefault();
+    console.log($("#monthPermanence").val());
+    console.log($("#yearPermanence").val());        
+});
 
 //PERMANENCIA
 function permanenceActual(sigla) {

@@ -12,9 +12,9 @@ $em = $app->em;
 <!-- <div>
     <h4 style="width:100px; position: absolute;"><img src="http://bids.org.bd/theme/bids/images/beta.png" alt=""></h4>
 </div> -->
-<div class="beta">
+<!--div class="beta">
   	<p class="beta__content">beta</p>
-  </div>
+  </div-->
 </section>
 
 <?php $this->part('home-search'); ?>
