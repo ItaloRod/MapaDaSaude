@@ -12,20 +12,20 @@ $em = $app->em;
 <!-- <div>
     <h4 style="width:100px; position: absolute;"><img src="http://bids.org.bd/theme/bids/images/beta.png" alt=""></h4>
 </div> -->
-<!--div class="beta">
+<div class="beta">
   	<p class="beta__content">beta</p>
-  </div-->
+  </div>
 </section>
 
 <?php $this->part('home-search'); ?>
 
-<?php $this->part('home-events'); ?>
+<?php //$this->part('home-events'); ?>
 
 <?php $this->part('home-agents'); ?>
 
 <?php $this->part('home-spaces'); ?>
 
-<?php $this->part('home-projects'); ?>
+<?php //$this->part('home-projects'); ?>
 
 <?php $this->part('home-opportunities'); ?>
 

@@ -21,6 +21,37 @@ $child_entity_request = isset($child_entity_request) ? $child_entity_request : n
 $this->entity = $entity;
 
 ?>
+<style>
+.form-control{
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.badge_success {
+		background: #79d279;
+		border-radius: 3px;
+		color: #fff;
+		z-index: 999999;
+		font-weight: 600;
+		padding: 2px 6px;
+		box-shadow: 0 2px 3px rgba(0,0,0,.2), inset 0 2px 5px rgba(225,225,225,.3);
+		font-size: 13px;
+		margin-left: 5px;
+		position: relative;
+		display: inline-block;
+		top: -1px;
+	}
+</style>
 <?php $this->applyTemplateHook('breadcrumb','begin'); ?>
 
 <?php $this->part('singles/breadcrumb', ['entity' => $entity,'entity_panel' => 'spaces','home_title' => 'entities: My Spaces']); ?>
@@ -62,6 +93,7 @@ $this->entity = $entity;
         <li class="active"><a href="#sobre"><?php \MapasCulturais\i::_e("Sobre");?></a></li>
         <?php if(!($this->controller->action === 'create')):?>
         <li><a href="#permissao"><?php \MapasCulturais\i::_e("Responsáveis");?></a></li>
+        <li><a href="#funcionarios"><?php \MapasCulturais\i::_e("Prof. Saúde");?></a></li>
         <?php endif;?>
         <?php $this->applyTemplateHook('tabs','end'); ?>
     </ul>
@@ -100,6 +132,7 @@ $this->entity = $entity;
         <!-- #permissao -->
         <?php $this->part('singles/permissions') ?>
         <!-- #permissao -->
+ 
         <?php $this->applyTemplateHook('tabs-content','end'); ?>
     </div>
     <!-- .tabs-content -->
@@ -142,6 +175,9 @@ $this->entity = $entity;
     <?php $this->part('link-list', ['entity' => $entity]); ?>
 
     <!-- History BEGIN -->
-        <?php $this->part('history.php', array('entity' => $entity)); ?>
+        <?php #$this->part('history.php', array('entity' => $entity)); ?>
     <!-- History END -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
+
 </div>
