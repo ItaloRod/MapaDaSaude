@@ -63,14 +63,6 @@ return [
     'mailer.from' => env('MAILER_FROM', 'suporte@mapasculturais.org'),
     'mailer.alwaysTo' => env('MAILER_ALWAYSTO', false),
 
-    // MAP
-    'maps.zoom.default' => env('MAPS_ZOOM_DEFAULTS', 5),
-    'maps.zoom.approximate' => env('MAPS_ZOOM_APPROXIMATE', 14),
-    'maps.zoom.precise' => env('MAPS_ZOOM_PRECISE', 16),
-    'maps.zoom.max' => env('MAPS_ZOOM_MAX', 18),
-    'maps.zoom.min' => env('MAPS_ZOOM_MIN', 5),
-    'maps.includeGoogleLayers' => env('MAPS_INCLUDE_GOOGLE_LAYERS', false),
-
     // CEP API
     'cep.endpoint'      => env('CEP_ENDPOINT', 'http://www.cepaberto.com/api/v2/ceps.json?cep=%s'),
     'cep.token_header'  => env('CEP_TOKEN_HEADER', 'Authorization: Token token="%s"'),

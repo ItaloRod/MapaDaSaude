@@ -134,20 +134,20 @@ return array(
     'app.useGoogleGeocode' => false,
     'app.googleApiKey'     => '',
 
-    //    'maps.center' => array(-23.54894, -46.63882), // são paulo
-    'maps.center' => array(-14.2400732, -53.1805018), // brasil
+    'maps.center' => array(-5.008866554677783, -39.69635009765625), // Ceará
+    //'maps.center' => array(-14.2400732, -53.1805018), // brasil
     'maps.maxClusterRadius' => 40,
     'maps.spiderfyDistanceMultiplier' => 1.3,
     'maps.maxClusterElements' => 6,
 
     'maps.geometryFieldQuery' => "ST_SimplifyPreserveTopology(geom, 0.001)",
 
-    'maps.zoom.default' => 5,
+    'maps.zoom.default' => 8,
     'maps.zoom.approximate' => 14,
     'maps.zoom.precise' => 16,
     'maps.zoom.max' => 18,
     'maps.zoom.min' => 5,
-    'maps.includeGoogleLayers' => false,
+    'maps.includeGoogleLayers' => true,
 
     'cep.endpoint'      => 'http://www.cepaberto.com/api/v2/ceps.json?cep=%s',
     'cep.token_header'  => 'Authorization: Token token="%s"',
