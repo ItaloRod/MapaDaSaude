@@ -299,7 +299,7 @@ return array(
     'app.useRegisteredAutoloadCache' => true,
     'app.registeredAutoloadCache.lifetime' => 0,
 
-    'app.useAssetsUrlCache' => true,
+    'app.useAssetsUrlCache' => false,
     'app.assetsUrlCache.lifetime' => 0,
 
     'app.useFileUrlCache' => true,
