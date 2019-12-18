@@ -203,7 +203,7 @@ $this->entity = $entity;
                 </small>
             </li>
         </ul>
-        <div class="space"><br></div>
+        <!-- <div class="space"><br></div>
         <h3>Comparativo com outro mês e ano,</h3>        
     <select class="form-control" name="monthPermanence" id="monthPermanence">
         <option selected value='0'>-- Selecione o Mês --</option>
@@ -226,7 +226,7 @@ $this->entity = $entity;
         <option value='2019'>2019</option>
        
     </select>
-    <button class="btn btn-success" id="btnComparativeIntegraSus">Consultar</button>
+    <button class="btn btn-success" id="btnComparativeIntegraSus">Consultar</button> -->
     
     </div>
    <div class="box" id="iframeBoxIntegrasus">
