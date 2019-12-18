@@ -1,0 +1,36 @@
+<nav id="home-nav">
+    <ul>
+        <li><a class="up icon icon-arrow-up" href="#"></a></li>
+        <li id="nav-intro">
+            <a class="icon icon-home" href="#home-intro"></a>
+            <span class="nav-title"><?php \MapasCulturais\i::_e("Introdução");?></span>
+        </li>
+
+        <?php if($app->isEnabled('agents')): ?>
+            <li id="nav-agents">
+                <a class="icon icon-agent" href="#home-agents"></a>
+                <span class="nav-title"><?php $this->dict('entities: Agents') ?></span>
+            </li>
+        <?php endif; ?>
+
+        <?php if($app->isEnabled('spaces')): ?>
+            <li id="nav-spaces">
+                <a class="icon icon-space" href="#home-spaces"></a>
+                <span class="nav-title"><?php $this->dict('entities: Spaces') ?></span>
+            </li>
+        <?php endif; ?>
+
+        <?php if($app->isEnabled('opportunities')): ?>
+            <li id="nav-opportunities">
+                <a class="icon icon-opportunity" href="#home-opportunities"></a>
+                <span class="nav-title"><?php $this->dict('entities: Opportunities') ?></span>
+            </li>
+        <?php endif; ?>
+
+        <li id="nav-developers">
+            <a class="icon icon-developers" href="#home-developers"></a>
+            <span class="nav-title"><?php \MapasCulturais\i::_e("Desenvolvedores");?></span>
+        </li>
+        <li><a class="down icon icon-select-arrow" href="#"></a></li>
+    </ul>
+</nav>
