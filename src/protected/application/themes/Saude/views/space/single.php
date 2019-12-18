@@ -191,15 +191,15 @@ $this->entity = $entity;
                 </small>
             </li>
             <li class="list-group-item">
-                <small><strong>Atendimento Ambulatorial: </strong>
+                <small><strong>Atendimento Ambulatorial (anual): </strong>
                     <label id="quantity_attendance_hospital_amb" 
-                    class="badge_success"></label> (2019)
+                    class="badge_success"></label>
                 </small>
             </li>
             <li class="list-group-item">
-                <small><strong>Atendimento Emergência:  </strong>
+                <small><strong>Atendimento Emergência (anual):  </strong>
                     <label id="quantity_attendance_hospital_eme" 
-                    class="badge_success"></label> (2019) 
+                    class="badge_success"></label>
                 </small>
             </li>
         </ul>
@@ -235,9 +235,10 @@ $this->entity = $entity;
         <option value='12'>December</option>
     </select>
     <button class="btn btn-success">Consultar</button> -->
-    <div class="box">
-       <h6 style="text-align: center;">Pacientes que tiveram tempo de permanência superior a 24h na emergência</h6>
+    <div class="box" id="iframeBoxIntegrasus">
+        
     </div>
+
     <!-- Related Admin Agents BEGIN -->
         <?php $this->part('related-admin-agents.php', array('entity'=>$entity)); ?>
     <!-- Related Admin Agents END -->
@@ -261,6 +262,7 @@ $this->entity = $entity;
 $(document).ready(function () {
     //POR PADRÃO INICIA OCULTANDO A DIV DAS INFORMAÇÕES
     $("#infoIntegrasus").hide();
+    $("#iframeBoxIntegrasus").hide();
     //NOME DO HOSPITAL VINDO DO PHP
     var nameH = '<?php echo htmlentities($entity->name); ?>';
     //ARRAY COM HOSPITAIS VALIDOS
@@ -278,31 +280,39 @@ $(document).ready(function () {
     var sigla = '';
     switch (nameH) {
         case 'HGF HOSPITAL GERAL DE FORTALEZA':
-            sigla = 'HGF';
-
+        sigla = 'HGF';
+        $("#iframeBoxIntegrasus").hide();
+            $("#iframeBoxIntegrasus").show();
+            $("#iframeBoxIntegrasus").append('<iframe src="https://indicadores.integrasus.saude.ce.gov.br/indicadores/indicadores-hospitalares/emergencia-maior-24-horas-filtro/'+sigla+'?modoExibicao=painel" width="100%" height="700px"></iframe>')
             break;
         case 'HGCC HOSPITAL GERAL DR CESAR CALS':
             sigla = 'HGCC';
+            $("#iframeBoxIntegrasus").show();
+            $("#iframeBoxIntegrasus").append('<iframe src="https://indicadores.integrasus.saude.ce.gov.br/indicadores/indicadores-hospitalares/emergencia-maior-24-horas-filtro/'+sigla+'?modoExibicao=painel" width="100%" height="700px"></iframe>')
             break;
         case 'HOSPITAL GERAL DR WALDEMAR ALCANTARA':
             sigla = 'HGWA';
+            $("#iframeBoxIntegrasus").show();
+            $("#iframeBoxIntegrasus").append('<iframe src="https://indicadores.integrasus.saude.ce.gov.br/indicadores/indicadores-hospitalares/emergencia-maior-24-horas-filtro/'+sigla+'?modoExibicao=painel" width="100%" height="700px"></iframe>')
             break;
         case 'HOSPITAL REGIONAL DO SERTAO CENTRAL':
             sigla = 'HRSC';
             break;
         case 'HOSPITAL SAO JOSE DE DOENCAS INFECCIOSAS':
             sigla = 'HSJ';
+            $("#iframeBoxIntegrasus").show();
+            $("#iframeBoxIntegrasus").append('<iframe src="https://indicadores.integrasus.saude.ce.gov.br/indicadores/indicadores-hospitalares/emergencia-maior-24-horas-filtro/'+sigla+'?modoExibicao=painel" width="100%" height="700px"></iframe>')
             break;
         case 'HOSPITAL DE SAUDE MENTAL DE MESSEJANA':
-            sigla = 'HM';
+            sigla = 'HSM';
+            $("#iframeBoxIntegrasus").show();
+            $("#iframeBoxIntegrasus").append('<iframe src="https://indicadores.integrasus.saude.ce.gov.br/indicadores/indicadores-hospitalares/emergencia-maior-24-horas-filtro/'+sigla+'?modoExibicao=painel" width="100%" height="700px"></iframe>')
             break;
         case 'HM HOSPITAL DE MESSEJANA DR CARLOS ALBERTO STUDART GOMES':
             sigla = 'HM';
-            // expected output: "Mangoes and papayas are $2.79 a pound."
             break;
         case 'HOSPITAL REGIONAL NORTE':
             sigla = 'HRN';
-            // expected output: "Mangoes and papayas are $2.79 a pound."
             break;
     }
     //SE NO ARRAY DE HOSPITAIS EXISTIR O MESMO NOME QUE VEM DO PHP, CHAMA AS FUNCOES
@@ -312,9 +322,18 @@ $(document).ready(function () {
         txoccupationbed(sigla)
         txHospitalMortality(sigla)
         quantity_attendance_hospital(sigla)
+        patientEmergencyBigger24hours(sigla)
     }
 
+
+
 });
+function numberToReal(numero) {
+    var numero = numero.toFixed(0).split('.');
+    numero[0] = numero[0].split(/(?=(?:...)*$)/).join('.');
+    return numero.join(',');
+}
+
 //PERMANENCIA
 function permanenceActual(sigla) {
     var dt2 = new Date();
@@ -338,7 +357,7 @@ function permanenceActual(sigla) {
             $.each(permanence, function (indexInArray, permanence) {
                 //console.log(permanence.hospital)
                 if (permanence.hospital == sigla && permanence.mes == current_month && permanence.ano == current_year) {
-                    console.log('Tempo de permanencia : ' + permanence.mediaPermanenciaGeral)
+                    //console.log('Tempo de permanencia : ' + permanence.mediaPermanenciaGeral)
                     $("#info_permanence_actual").html(permanence.mediaPermanenciaGeral)
                     $("#info_permanence_actual").attr('title', current_month + '/' + current_year)
                 }
@@ -357,21 +376,13 @@ function txoccupationbed(sigla) {
 
         dataType: "json",
         success: function (response) {
-            console.log('Leitos');
-            // console.log(response.content.hospital);
-            //console.log(response.content[0]);
             var permanence = response.content;
-            // $.getJSON("url", data,
-            //     function (data, textStatus, jqXHR) {
-
-            //     }
-            // );
-            // console.log(permanence[0].taxaOcupacaoLeitosMes)
+            
             $.each(permanence, function (indexInArray, permanence) {
                 //console.log(permanence.hospital)
                 var mesAnterior = current_month - 1
                 if (permanence.hospital == sigla && permanence.mes == mesAnterior && permanence.ano == current_year) {
-                    console.log('Taxa de Ocupação dos Leitos: ' + permanence.taxaOcupacaoLeitosMes)
+                    //console.log('Taxa de Ocupação dos Leitos: ' + permanence.taxaOcupacaoLeitosMes)
                     $("#info_ocupation").html(permanence.taxaOcupacaoLeitosMes.toFixed(2) + '%')
                     $("#info_ocupation").attr('title', mesAnterior + '/' + current_year)
                 }
@@ -389,27 +400,22 @@ function quantity_attendance_hospital(sigla) {
         url: "https://indicadores.integrasus.saude.ce.gov.br/api/qtd-atendimento-hospital",
         dataType: "json",
         success: function (response) {
-            //console.log('atendimentohospital');
-            // console.log(response.content.hospital);
-            //console.log(response.content[0]);
+           
             var permanence = response.content;
-            // $.getJSON("url", data,
-            //     function (data, textStatus, jqXHR) {
-
-            //     }
-            // );
-            console.log(permanence[0].taxaOcupacaoLeitosMes)
+            
             $.each(permanence, function (indexInArray, permanence) {
                 //console.log(permanence.hospital)
                 if (permanence.hospital == sigla && permanence.tipoAtendimento == 'AMBULATORIO') {
                     //console.log('Taxa de mortalidadeHospitalar: ' + permanence.mortalidadeHospitalar)
-                    $("#quantity_attendance_hospital_amb").html(permanence.qtd)
-                    $("#quantity_attendance_hospital_amb").attr('title', "Tipo: " + permanence.tipoAtendimento)
+                    qtdAmb = numberToReal(permanence.qtd);
+                    $("#quantity_attendance_hospital_amb").html(qtdAmb)
+                    $("#quantity_attendance_hospital_amb").attr('title', 'ANO '+ current_year)
                 }
                 if (permanence.hospital == sigla && permanence.tipoAtendimento == 'EMERGÊNCIA') {
                     //console.log('Taxa de mortalidadeHospitalar: ' + permanence.mortalidadeHospitalar)
-                    $("#quantity_attendance_hospital_eme").html(permanence.qtd)
-                    $("#quantity_attendance_hospital_eme").attr('title', "Tipo: " + permanence.tipoAtendimento)
+                    qtdEme = numberToReal(permanence.qtd);
+                    $("#quantity_attendance_hospital_eme").html(qtdEme)
+                    $("#quantity_attendance_hospital_eme").attr('title', 'ANO '+current_year)
                 }
             });
         }
@@ -425,16 +431,8 @@ function txHospitalMortality(sigla) {
         url: "https://indicadores.integrasus.saude.ce.gov.br/api/taxa-mortalidade",
         dataType: "json",
         success: function (response) {
-            //            console.log('mortalidade');
-            // console.log(response.content.hospital);
-            //console.log(response.content[0]);
+           
             var permanence = response.content;
-            // $.getJSON("url", data,
-            //     function (data, textStatus, jqXHR) {
-
-            //     }
-            // );
-            // console.log(permanence[0].taxaOcupacaoLeitosMes)
             $.each(permanence, function (indexInArray, permanence) {
                 //console.log(permanence.hospital)
                 if (permanence.hospital == sigla && permanence.mes == current_month && permanence.ano == current_year) {
@@ -447,6 +445,54 @@ function txHospitalMortality(sigla) {
     });
 }
 
+//PACIENTES QUE TIVERAM TEMPO DE PERMANÊNCIA SUPERIOR A 24H NA EMERGÊNCIA
+function patientEmergencyBigger24hours(sigla) {
+    var dt2 = new Date();
+    var current_month = (dt2.getMonth() + 1);
+    var current_year = (dt2.getFullYear());
+    var countGeneral = 0;
+    var countMale = 0;
+    var countFeminine = 0;
+    var valMale = 0;
+    var valFamile = 0;
+    $.ajax({
+        type: "get",
+        url: "https://indicadores.integrasus.saude.ce.gov.br/api/paciente-tempo-perm-maior-24/search/sexo?ano="+current_year+"&mes="+current_month+"&hospital=HGF",
+        dataType: "json",
+        success: function (response) {
+            
+            var permanence = response;
+          
+            $.each(permanence, function (indexInArray, permanence) {
+                if (permanence.hospital == sigla && permanence.mes == current_month && permanence.ano == current_year) {
+                    // console.log('Taxa de mortalidadeHospitalar: ' + permanence.sexo + '%')
+                    countGeneral = countGeneral + permanence.qtd;                   
+                    if(permanence.sexo == 'Feminino') {
+                        countFeminine = permanence.qtd                        
+                    }else{
+                        countMale = permanence.qtd
+                    }
+                   
+                }
+            });
+           
+
+            valMale = countPercent(countGeneral , countFeminine)
+            valFemile = countPercent(countGeneral , countMale)
+            $("#permanenceBigger24Male").html(valMale.toFixed(2) + ' %')
+            $("#permanenceBigger24Male").attr('title' , current_month+'/'+current_year)
+            $("#permanenceBigger24Feminile").html(valFemile.toFixed(2) + ' %')
+            $("#permanenceBigger24Feminile").attr('title' , current_month+'/'+current_year)
+        }
+    });
+   
+}
+function countPercent(countGeneral , quant) {
+    var percent = 0;
+    mult = quant * 100;    
+    percent = (mult / countGeneral);
+    return percent;
+}
 function SelectPermanence(current_month, current_year) {
     var dt2 = new Date();
     var current_month = (dt2.getMonth() + 1);
@@ -469,7 +515,7 @@ function SelectPermanence(current_month, current_year) {
             $.each(permanence, function (indexInArray, permanence) {
                 //console.log(permanence.hospital)
                 if (permanence.hospital == "HGF" && permanence.mes == current_month && permanence.ano == current_year) {
-                    console.log('Tempo de permanencia selecionado: ' + permanence.mediaPermanenciaGeral);
+                    //console.log('Tempo de permanencia selecionado: ' + permanence.mediaPermanenciaGeral);
                 }
             });
         }
