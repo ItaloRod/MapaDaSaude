@@ -104,7 +104,7 @@ $this->entity = $entity;
         
         <?php if(!($this->controller->action === 'create')):?>
         <li><a href="#permissao"><?php \MapasCulturais\i::_e("Responsáveis");?></a></li>
-        <li><a href="#profsaude"><?php \MapasCulturais\i::_e("Prof. Saúde");?></a></li>
+        <li><a href="#profsaude"><?php \MapasCulturais\i::_e("Profissionais de Saúde");?></a></li>
         <?php endif;?>
         
         <?php $this->applyTemplateHook('tabs','end'); ?>

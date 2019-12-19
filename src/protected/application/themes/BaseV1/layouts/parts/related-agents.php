@@ -20,6 +20,7 @@ $this->addRelatedAgentsToJs($entity);
         
     </div>
     
+    <span style="float:right">Total de Agentes: <b>{{quantidadeAgentes}}</b></span>
     <div class="widget" ng-repeat="group in groups">
         
         <h3>
