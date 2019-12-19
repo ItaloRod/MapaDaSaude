@@ -64,7 +64,9 @@ $this->entity = $entity;
     border:1px solid #ddd
 }
 .box{position:relative;border-radius:3px;background:#ffffff;border-top:3px solid #d2d6de;margin-bottom:20px;width:100%;box-shadow:0 1px 1px rgba(0,0,0,0.1)}
+.text-danger{color:#a94442}a.text-danger:hover{color:#843534}
 </style>
+<link rel="stylesheet" type="text/css" href="https://daneden.github.io/animate.css/animate.min.css">
 <?php $this->applyTemplateHook('breadcrumb','begin'); ?>
 
 <?php $this->part('singles/breadcrumb', ['entity' => $entity,'entity_panel' => 'spaces','home_title' => 'entities: My Spaces']); ?>
@@ -106,7 +108,7 @@ $this->entity = $entity;
         <li class="active"><a href="#sobre"><?php \MapasCulturais\i::_e("Sobre");?></a></li>
         <?php if(!($this->controller->action === 'create')):?>
         <li><a href="#permissao"><?php \MapasCulturais\i::_e("Responsáveis");?></a></li>
-        <li><a href="#funcionarios"><?php \MapasCulturais\i::_e("Prof. Saúde");?></a></li>
+        <li><a href="#profsaude"><?php \MapasCulturais\i::_e("Profissionais de Saúde");?></a></li>
         <?php endif;?>
         <?php $this->applyTemplateHook('tabs','end'); ?>
     </ul>
@@ -142,6 +144,10 @@ $this->entity = $entity;
             <?php $this->applyTemplateHook('tab-about','end'); ?>
         </div>
         <!-- #sobre -->
+         <!-- #profissionais de saúde -->
+         <div id="profsaude" class="aba-content">
+            <?php $this->part('related-agents', ['entity' => $entity]); ?>
+        </div>
         <!-- #permissao -->
         <?php $this->part('singles/permissions') ?>
         <!-- #permissao -->
@@ -203,8 +209,9 @@ $this->entity = $entity;
                 </small>
             </li>
         </ul>
-        <div class="space"><br></div>
-        <h3>Comparativo com outro mês e ano,</h3>        
+    <div class="space"><br></div>
+        <h3>Comparativo com outro mês e ano,</h3>  
+        <small class="text-danger" id="requiredMonthPermanence"><strong>Esses dois campos são obrigatórios</strong></small>      
     <select class="form-control" name="monthPermanence" id="monthPermanence">
         <option selected value='0'>-- Selecione o Mês --</option>
         <option value='1'>Janeiro</option>
@@ -220,16 +227,40 @@ $this->entity = $entity;
         <option value='11'>Novembro</option>
         <option value='12'>Dezembro</option>
     </select>
+    <small class="text-danger" id="requiredYearPermanence"><strong>Esse campo é obrigatório</strong></small>
     <select class="form-control" name="yearPermanence" id="yearPermanence">
         <option selected value='0'>-- Selecione o Ano --</option>
         <option value='2018'>2018</option>
         <option value='2019'>2019</option>
        
     </select>
-    <button class="btn btn-success" id="btnComparativeIntegraSus">Consultar</button>
+    <button class="btn btn-success" id="btnComparativeIntegraSus">Consultar indicador</button>
     
+    <div class="box animated bounceInUp" id="boxComparativeIntegrasus">
+        <div class="box-body" id="bodyComparativeIntegrasus">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <small><strong>Permanencia Atualmente: </strong>
+                    <label id="info_permanence_actual_select" class="badge_success"></label> dias 
+                </small>
+            </li>
+            <li class="list-group-item">
+                <small><strong>Taxa de ocupação dos leitos: </strong>
+                    <label id="info_ocupation_select" class="badge_success"></label> 
+                </small>
+            </li>
+            <li class="list-group-item">
+                <small><strong>Taxa de mortalidade hospitalar: </strong>
+                    <label id="info_hospital_mortality_select" class="badge_success"></label> 
+                </small>
+            </li>
+            
+        </ul>
+        </div>
+    </div>
     </div>
    <div class="box" id="iframeBoxIntegrasus">
+       <button class="btn btn-success">Ampliar</button>
         
     </div>
 
@@ -238,7 +269,7 @@ $this->entity = $entity;
     <!-- Related Admin Agents END -->
 
     <!-- Related Agents BEGIN -->
-    <?php $this->part('related-agents', ['entity' => $entity]); ?>
+    <?php //$this->part('related-agents', ['entity' => $entity]); ?>
     <!-- Related Agents END -->
 
     <?php $this->part('singles/space-children', ['entity' => $entity]); ?>
@@ -250,15 +281,18 @@ $this->entity = $entity;
     <!-- History BEGIN -->
         <?php $this->part('history.php', array('entity' => $entity)); ?>
     <!-- History END -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
+
     <script>
 $(document).ready(function () {
     //POR PADRÃO INICIA OCULTANDO A DIV DAS INFORMAÇÕES
     $("#infoIntegrasus").hide();
     $("#iframeBoxIntegrasus").hide();
+    $("#boxComparativeIntegrasus").hide();
+    $("#requiredMonthPermanence").hide();
+    $("#requiredYearPermanence").hide();
     //NOME DO HOSPITAL VINDO DO PHP
     var nameH = '<?php echo htmlentities($entity->name); ?>';
+    var sigla = '';
     //ARRAY COM HOSPITAIS VALIDOS
     var hospitalValidation = [
         'HGF HOSPITAL GERAL DE FORTALEZA',
@@ -271,7 +305,7 @@ $(document).ready(function () {
         'HOSPITAL REGIONAL NORTE'
     ]
     //VERIFICANDO QUAL A SIGLA PARA CONSULTA    
-    var sigla = '';
+    
     switch (nameH) {
         case 'HGF HOSPITAL GERAL DE FORTALEZA':
         sigla = 'HGF';
@@ -317,8 +351,27 @@ $(document).ready(function () {
         patientEmergencyBigger24hours(sigla)
     }
 
-
-
+    $("#btnComparativeIntegraSus").click(function (e) { 
+        e.preventDefault();
+        $("#boxComparativeIntegrasus").hide();
+        console.log($("#monthPermanence").val());
+        console.log($("#yearPermanence").val());  
+        console.log({sigla});
+        if($("#monthPermanence").val() == '0' ||  $("#yearPermanence").val() == '0') {
+            $("#requiredMonthPermanence").show(); 
+            $("#boxComparativeIntegrasus").removeClass('animated', 'bounceInUp');
+         
+        }else{
+            $("#boxComparativeIntegrasus").hide()
+            $("#boxComparativeIntegrasus").show()
+            permanenceActualSelect(sigla, $("#monthPermanence").val(), $("#yearPermanence").val())
+            txoccupationbedSelected(sigla, $("#monthPermanence").val(), $("#yearPermanence").val())
+            txHospitalMortalitySelect(sigla, $("#monthPermanence").val(), $("#yearPermanence").val())
+            //$("#boxComparativeIntegrasus").removeClass('animated', 'bounceInUp');
+         
+        }
+           
+    });
 });
 function numberToReal(numero) {
     var numero = numero.toFixed(0).split('.');
@@ -326,14 +379,32 @@ function numberToReal(numero) {
     return numero.join(',');
 }
 
-$("#btnComparativeIntegraSus").click(function (e) { 
-    e.preventDefault();
-    console.log($("#monthPermanence").val());
-    console.log($("#yearPermanence").val());        
-});
 
 //PERMANENCIA
 function permanenceActual(sigla) {
+    var dt2 = new Date();
+    var current_month = (dt2.getMonth() + 1);
+    var current_year = (dt2.getFullYear());
+   
+    $.ajax({
+        type: "get",
+        url: "https://indicadores.integrasus.saude.ce.gov.br/api/media-permanencia-geral",
+
+        dataType: "json",
+        success: function (response) {
+            var permanence = response.content;
+            $.each(permanence, function (indexInArray, permanence) {
+                //console.log(permanence.hospital)
+                if (permanence.hospital == sigla && permanence.mes == current_month && permanence.ano == current_year) {
+                    //console.log('Tempo de permanencia : ' + permanence.mediaPermanenciaGeral)
+                    $("#info_permanence_actual").html(permanence.mediaPermanenciaGeral)
+                    $("#info_permanence_actual").attr('title', current_month + '/' + current_year)
+                }
+            });
+        }
+    });
+}
+function permanenceActualSelect(sigla, month, year) {
     var dt2 = new Date();
     var current_month = (dt2.getMonth() + 1);
     var current_year = (dt2.getFullYear());
@@ -343,21 +414,13 @@ function permanenceActual(sigla) {
 
         dataType: "json",
         success: function (response) {
-            // console.log('permanencia');
-            // console.log(response.content.hospital);
-            //console.log(response.content[0]);
             var permanence = response.content;
-            // $.getJSON("url", data,
-            //     function (data, textStatus, jqXHR) {
-
-            //     }
-            // );
             $.each(permanence, function (indexInArray, permanence) {
                 //console.log(permanence.hospital)
-                if (permanence.hospital == sigla && permanence.mes == current_month && permanence.ano == current_year) {
+                if (permanence.hospital == sigla && permanence.mes == month && permanence.ano == year) {
                     //console.log('Tempo de permanencia : ' + permanence.mediaPermanenciaGeral)
-                    $("#info_permanence_actual").html(permanence.mediaPermanenciaGeral)
-                    $("#info_permanence_actual").attr('title', current_month + '/' + current_year)
+                    $("#info_permanence_actual_select").html(permanence.mediaPermanenciaGeral)
+                    $("#info_permanence_actual_select").attr('title', month + '/' + year)
                 }
             });
         }
@@ -383,6 +446,26 @@ function txoccupationbed(sigla) {
                     //console.log('Taxa de Ocupação dos Leitos: ' + permanence.taxaOcupacaoLeitosMes)
                     $("#info_ocupation").html(permanence.taxaOcupacaoLeitosMes.toFixed(2) + '%')
                     $("#info_ocupation").attr('title', mesAnterior + '/' + current_year)
+                }
+            });
+        }
+    });
+}
+function txoccupationbedSelected(sigla, month, year) {
+    var dt2 = new Date();
+    var monthSelect = '0'+month;
+    $.ajax({
+        type: "get",
+        url: "https://indicadores.integrasus.saude.ce.gov.br/api/taxa-ocupacao-leitos",
+
+        dataType: "json",
+        success: function (response) {
+            var permanence = response.content;
+            $.each(permanence, function (indexInArray, permanence) {
+                if (permanence.hospital == sigla && permanence.mes == monthSelect && permanence.ano == year) {
+                    console.log('Taxa de Ocupação dos Leitos - SELECT: ' + permanence.taxaOcupacaoLeitosMes)
+                    $("#info_ocupation_select").html(permanence.taxaOcupacaoLeitosMes.toFixed(2) + '%')
+                    $("#info_ocupation_select").attr('title', monthSelect + '/' + month)
                 }
             });
         }
@@ -419,6 +502,7 @@ function quantity_attendance_hospital(sigla) {
         }
     });
 }
+
 //TAXA DE MORTALIDADE HOSPITALAR
 function txHospitalMortality(sigla) {
     var dt2 = new Date();
@@ -437,6 +521,24 @@ function txHospitalMortality(sigla) {
                     //console.log('Taxa de mortalidadeHospitalar: ' + permanence.mortalidadeHospitalar)
                     $("#info_hospital_mortality").html(permanence.mortalidadeHospitalar.toFixed(2) + '%')
                     $("#info_hospital_mortality").attr('title', current_month + '/' + current_year)
+                }
+            });
+        }
+    });
+}
+function txHospitalMortalitySelect(sigla, month, year) {
+    var monthSelect = '0'+month;
+    $.ajax({
+        type: "get",
+        url: "https://indicadores.integrasus.saude.ce.gov.br/api/taxa-mortalidade",
+        dataType: "json",
+        success: function (response) {           
+            var permanence = response.content;
+            $.each(permanence, function (indexInArray, permanence) {
+                if (permanence.hospital == sigla && permanence.mes == monthSelect && permanence.ano == year) {
+                    //console.log('Taxa de mortalidadeHospitalar: ' + permanence.mortalidadeHospitalar)
+                    $("#info_hospital_mortality_select").html(permanence.mortalidadeHospitalar.toFixed(2) + '%')
+                    $("#info_hospital_mortality_select").attr('title', monthSelect + '/' + year)
                 }
             });
         }
