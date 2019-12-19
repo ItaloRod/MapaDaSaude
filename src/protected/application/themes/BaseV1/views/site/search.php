@@ -36,10 +36,6 @@ $this->includeMapAssets();
     <div id="mc-entity-layers" class="js-leaflet-control" data-leaflet-target=".leaflet-bottom.leaflet-right" ng-show="data.global.viewMode ==='map'">
         <div class="label"><?php \MapasCulturais\i::_e("Mostrar");?>:</div>
         <div>
-            <?php if($app->isEnabled('events')): ?>
-                <a class="hltip hltip-auto-update btn-map btn-map-event" ng-class="{active: data.global.enabled.event}" ng-click="data.global.enabled.event = !data.global.enabled.event" title="{{(data.global.enabled.event) && 'Ocultar' || 'Mostrar'}} <?php \MapasCulturais\i::_e("eventos");?>"></a>
-            <?php endif; ?>
-
             <?php if($app->isEnabled('spaces')): ?>
                 <a class="hltip hltip-auto-update btn-map btn-map-space" ng-class="{active: data.global.enabled.space}" ng-click="data.global.enabled.space = !data.global.enabled.space" title="{{(data.global.enabled.space) && 'Ocultar' || 'Mostrar'}} <?php $this->dict('entities: spaces') ?>"></a>
             <?php endif; ?>
