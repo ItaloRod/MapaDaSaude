@@ -22,3 +22,46 @@
     font-size: 2.5rem;
 
 }
+.form-control{
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.badge_success {
+		background: #79d279;
+		border-radius: 3px;
+		color: #fff;
+		font-weight: 600;
+		padding: 2px 6px;
+		box-shadow: 0 2px 3px rgba(0,0,0,.2), inset 0 2px 5px rgba(225,225,225,.3);
+		font-size: 13px;
+		margin-left: 5px;
+		position: relative;
+		display: inline-block;
+		top: -1px;
+    }
+.list-group{
+    padding-left:0;
+    margin-bottom:20px;
+    margin: 0 !important;
+}
+.list-group-item{
+    position:relative;
+    display:block;
+    padding:10px 15px;
+    margin-bottom:-1px;
+    background-color:#fff;
+    border:1px solid #ddd
+}
+.box{position:relative;border-radius:3px;background:#ffffff;border-top:3px solid #d2d6de;margin-bottom:20px;width:100%;box-shadow:0 1px 1px rgba(0,0,0,0.1)}
+.text-danger{color:#a94442}a.text-danger:hover{color:#843534}
