@@ -234,7 +234,7 @@ $this->entity = $entity;
         <option value='2019'>2019</option>
        
     </select>
-    <button class="btn btn-success" id="btnComparativeIntegraSus">Consultar</button>
+    <button class="btn btn-success" id="btnComparativeIntegraSus">Consultar indicador</button>
     
     <div class="box animated bounceInUp" id="boxComparativeIntegrasus">
         <div class="box-body" id="bodyComparativeIntegrasus">
