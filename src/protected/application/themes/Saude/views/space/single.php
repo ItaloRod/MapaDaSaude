@@ -64,7 +64,9 @@ $this->entity = $entity;
     border:1px solid #ddd
 }
 .box{position:relative;border-radius:3px;background:#ffffff;border-top:3px solid #d2d6de;margin-bottom:20px;width:100%;box-shadow:0 1px 1px rgba(0,0,0,0.1)}
+.text-danger{color:#a94442}a.text-danger:hover{color:#843534}
 </style>
+<link rel="stylesheet" type="text/css" href="https://daneden.github.io/animate.css/animate.min.css">
 <?php $this->applyTemplateHook('breadcrumb','begin'); ?>
 
 <?php $this->part('singles/breadcrumb', ['entity' => $entity,'entity_panel' => 'spaces','home_title' => 'entities: My Spaces']); ?>
@@ -203,8 +205,9 @@ $this->entity = $entity;
                 </small>
             </li>
         </ul>
-        <!-- <div class="space"><br></div>
-        <h3>Comparativo com outro mês e ano,</h3>        
+    <div class="space"><br></div>
+        <h3>Comparativo com outro mês e ano,</h3>  
+        <small class="text-danger" id="requiredMonthPermanence"><strong>Esses dois campos são obrigatórios</strong></small>      
     <select class="form-control" name="monthPermanence" id="monthPermanence">
         <option selected value='0'>-- Selecione o Mês --</option>
         <option value='1'>Janeiro</option>
@@ -220,14 +223,48 @@ $this->entity = $entity;
         <option value='11'>Novembro</option>
         <option value='12'>Dezembro</option>
     </select>
+    <small class="text-danger" id="requiredYearPermanence"><strong>Esse campo é obrigatório</strong></small>
     <select class="form-control" name="yearPermanence" id="yearPermanence">
         <option selected value='0'>-- Selecione o Ano --</option>
         <option value='2018'>2018</option>
         <option value='2019'>2019</option>
        
     </select>
-    <button class="btn btn-success" id="btnComparativeIntegraSus">Consultar</button> -->
+    <button class="btn btn-success" id="btnComparativeIntegraSus">Consultar</button>
     
+    <div class="box animated bounceInUp" id="boxComparativeIntegrasus">
+        <div class="box-body" id="bodyComparativeIntegrasus">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <small><strong>Permanencia Atualmente: </strong>
+                    <label id="info_permanence_actual_select" class="badge_success"></label> dias 
+                </small>
+            </li>
+            <li class="list-group-item">
+                <small><strong>Taxa de ocupação dos leitos: </strong>
+                    <label id="info_ocupation" class="badge_success"></label> 
+                </small>
+            </li>
+            <li class="list-group-item">
+                <small><strong>Taxa de mortalidade hospitalar: </strong>
+                    <label id="info_hospital_mortality" class="badge_success"></label> 
+                </small>
+            </li>
+            <li class="list-group-item">
+                <small><strong>Atendimento Ambulatorial (anual): </strong>
+                    <label id="quantity_attendance_hospital_amb" 
+                    class="badge_success"></label>
+                </small>
+            </li>
+            <li class="list-group-item">
+                <small><strong>Atendimento Emergência (anual):  </strong>
+                    <label id="quantity_attendance_hospital_eme" 
+                    class="badge_success"></label>
+                </small>
+            </li>
+        </ul>
+        </div>
+    </div>
     </div>
    <div class="box" id="iframeBoxIntegrasus">
         
@@ -257,8 +294,12 @@ $(document).ready(function () {
     //POR PADRÃO INICIA OCULTANDO A DIV DAS INFORMAÇÕES
     $("#infoIntegrasus").hide();
     $("#iframeBoxIntegrasus").hide();
+    $("#boxComparativeIntegrasus").hide();
+    $("#requiredMonthPermanence").hide();
+    $("#requiredYearPermanence").hide();
     //NOME DO HOSPITAL VINDO DO PHP
     var nameH = '<?php echo htmlentities($entity->name); ?>';
+    var sigla = '';
     //ARRAY COM HOSPITAIS VALIDOS
     var hospitalValidation = [
         'HGF HOSPITAL GERAL DE FORTALEZA',
@@ -271,7 +312,7 @@ $(document).ready(function () {
         'HOSPITAL REGIONAL NORTE'
     ]
     //VERIFICANDO QUAL A SIGLA PARA CONSULTA    
-    var sigla = '';
+    
     switch (nameH) {
         case 'HGF HOSPITAL GERAL DE FORTALEZA':
         sigla = 'HGF';
@@ -317,8 +358,25 @@ $(document).ready(function () {
         patientEmergencyBigger24hours(sigla)
     }
 
-
-
+    $("#btnComparativeIntegraSus").click(function (e) { 
+        e.preventDefault();
+        $("#boxComparativeIntegrasus").hide();
+        // console.log($("#monthPermanence").val());
+        // console.log($("#yearPermanence").val());  
+        // console.log({sigla});
+        if($("#monthPermanence").val() == '0' ||  $("#yearPermanence").val() == '0') {
+            $("#requiredMonthPermanence").show(); 
+            $("#boxComparativeIntegrasus").removeClass('animated', 'bounceInUp');
+         
+        }else{
+            $("#boxComparativeIntegrasus").hide();
+            $("#boxComparativeIntegrasus").show();          
+            permanenceActualSelect(sigla, $("#monthPermanence").val(), $("#yearPermanence").val())   
+            //$("#boxComparativeIntegrasus").removeClass('animated', 'bounceInUp');
+         
+        }
+           
+    });
 });
 function numberToReal(numero) {
     var numero = numero.toFixed(0).split('.');
@@ -326,11 +384,6 @@ function numberToReal(numero) {
     return numero.join(',');
 }
 
-$("#btnComparativeIntegraSus").click(function (e) { 
-    e.preventDefault();
-    console.log($("#monthPermanence").val());
-    console.log($("#yearPermanence").val());        
-});
 
 //PERMANENCIA
 function permanenceActual(sigla) {
@@ -343,21 +396,35 @@ function permanenceActual(sigla) {
 
         dataType: "json",
         success: function (response) {
-            // console.log('permanencia');
-            // console.log(response.content.hospital);
-            //console.log(response.content[0]);
             var permanence = response.content;
-            // $.getJSON("url", data,
-            //     function (data, textStatus, jqXHR) {
-
-            //     }
-            // );
             $.each(permanence, function (indexInArray, permanence) {
                 //console.log(permanence.hospital)
                 if (permanence.hospital == sigla && permanence.mes == current_month && permanence.ano == current_year) {
                     //console.log('Tempo de permanencia : ' + permanence.mediaPermanenciaGeral)
                     $("#info_permanence_actual").html(permanence.mediaPermanenciaGeral)
                     $("#info_permanence_actual").attr('title', current_month + '/' + current_year)
+                }
+            });
+        }
+    });
+}
+function permanenceActualSelect(sigla, month, year) {
+    var dt2 = new Date();
+    var current_month = (dt2.getMonth() + 1);
+    var current_year = (dt2.getFullYear());
+    $.ajax({
+        type: "get",
+        url: "https://indicadores.integrasus.saude.ce.gov.br/api/media-permanencia-geral",
+
+        dataType: "json",
+        success: function (response) {
+            var permanence = response.content;
+            $.each(permanence, function (indexInArray, permanence) {
+                //console.log(permanence.hospital)
+                if (permanence.hospital == sigla && permanence.mes == month && permanence.ano == year) {
+                    //console.log('Tempo de permanencia : ' + permanence.mediaPermanenciaGeral)
+                    $("#info_permanence_actual_select").html(permanence.mediaPermanenciaGeral)
+                    $("#info_permanence_actual_select").attr('title', month + '/' + year)
                 }
             });
         }
