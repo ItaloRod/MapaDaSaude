@@ -94,11 +94,20 @@
 
         $scope.groups = [];
 
+        $scope.quantidadeAgentes = 0;
+
         $scope.admins = MapasCulturais.entity.agentAdminRelations;
 
         for(var i in MapasCulturais.entity.agentRelations)
-            if(i != 'group-admin')
+        {
+            if (i != 'group-admin')
+            {
                 $scope.groups.push({name: i, relations: MapasCulturais.entity.agentRelations[i]});
+                $scope.quantidadeAgentes = $scope.quantidadeAgentes + MapasCulturais.entity.agentRelations[i].length;
+            }
+        }
+
+        console.log($scope.quantidadeAgentes);
 
         $scope.showCreateDialog = {};
 

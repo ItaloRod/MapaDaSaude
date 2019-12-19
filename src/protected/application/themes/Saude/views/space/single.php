@@ -108,7 +108,7 @@ $this->entity = $entity;
         <li class="active"><a href="#sobre"><?php \MapasCulturais\i::_e("Sobre");?></a></li>
         <?php if(!($this->controller->action === 'create')):?>
         <li><a href="#permissao"><?php \MapasCulturais\i::_e("Responsáveis");?></a></li>
-        <li><a href="#funcionarios"><?php \MapasCulturais\i::_e("Prof. Saúde");?></a></li>
+        <li><a href="#profsaude"><?php \MapasCulturais\i::_e("Profissionais de Saúde");?></a></li>
         <?php endif;?>
         <?php $this->applyTemplateHook('tabs','end'); ?>
     </ul>
@@ -144,6 +144,10 @@ $this->entity = $entity;
             <?php $this->applyTemplateHook('tab-about','end'); ?>
         </div>
         <!-- #sobre -->
+         <!-- #profissionais de saúde -->
+         <div id="profsaude" class="aba-content">
+            <?php $this->part('related-agents', ['entity' => $entity]); ?>
+        </div>
         <!-- #permissao -->
         <?php $this->part('singles/permissions') ?>
         <!-- #permissao -->
@@ -264,7 +268,7 @@ $this->entity = $entity;
     <!-- Related Admin Agents END -->
 
     <!-- Related Agents BEGIN -->
-    <?php $this->part('related-agents', ['entity' => $entity]); ?>
+    <?php //$this->part('related-agents', ['entity' => $entity]); ?>
     <!-- Related Agents END -->
 
     <?php $this->part('singles/space-children', ['entity' => $entity]); ?>
@@ -276,8 +280,7 @@ $this->entity = $entity;
     <!-- History BEGIN -->
         <?php $this->part('history.php', array('entity' => $entity)); ?>
     <!-- History END -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
+
     <script>
 $(document).ready(function () {
     //POR PADRÃO INICIA OCULTANDO A DIV DAS INFORMAÇÕES

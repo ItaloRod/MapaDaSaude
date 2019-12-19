@@ -1,6 +1,6 @@
 (function(angular) {
 	"use strict";
-	console.log('deu')
+	
 	var module = angular.module('entity.module.relatedSeals', [ 'ngSanitize' ]);
     
     var labels = MapasCulturais.gettext.relatedSeals;
