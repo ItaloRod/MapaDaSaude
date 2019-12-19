@@ -242,26 +242,15 @@ $this->entity = $entity;
             </li>
             <li class="list-group-item">
                 <small><strong>Taxa de ocupação dos leitos: </strong>
-                    <label id="info_ocupation" class="badge_success"></label> 
+                    <label id="info_ocupation_select" class="badge_success"></label> 
                 </small>
             </li>
             <li class="list-group-item">
                 <small><strong>Taxa de mortalidade hospitalar: </strong>
-                    <label id="info_hospital_mortality" class="badge_success"></label> 
+                    <label id="info_hospital_mortality_select" class="badge_success"></label> 
                 </small>
             </li>
-            <li class="list-group-item">
-                <small><strong>Atendimento Ambulatorial (anual): </strong>
-                    <label id="quantity_attendance_hospital_amb" 
-                    class="badge_success"></label>
-                </small>
-            </li>
-            <li class="list-group-item">
-                <small><strong>Atendimento Emergência (anual):  </strong>
-                    <label id="quantity_attendance_hospital_eme" 
-                    class="badge_success"></label>
-                </small>
-            </li>
+            
         </ul>
         </div>
     </div>
@@ -361,17 +350,19 @@ $(document).ready(function () {
     $("#btnComparativeIntegraSus").click(function (e) { 
         e.preventDefault();
         $("#boxComparativeIntegrasus").hide();
-        // console.log($("#monthPermanence").val());
-        // console.log($("#yearPermanence").val());  
-        // console.log({sigla});
+        console.log($("#monthPermanence").val());
+        console.log($("#yearPermanence").val());  
+        console.log({sigla});
         if($("#monthPermanence").val() == '0' ||  $("#yearPermanence").val() == '0') {
             $("#requiredMonthPermanence").show(); 
             $("#boxComparativeIntegrasus").removeClass('animated', 'bounceInUp');
          
         }else{
-            $("#boxComparativeIntegrasus").hide();
-            $("#boxComparativeIntegrasus").show();          
-            permanenceActualSelect(sigla, $("#monthPermanence").val(), $("#yearPermanence").val())   
+            $("#boxComparativeIntegrasus").hide()
+            $("#boxComparativeIntegrasus").show()
+            permanenceActualSelect(sigla, $("#monthPermanence").val(), $("#yearPermanence").val())
+            txoccupationbedSelected(sigla, $("#monthPermanence").val(), $("#yearPermanence").val())
+            txHospitalMortalitySelect(sigla, $("#monthPermanence").val(), $("#yearPermanence").val())
             //$("#boxComparativeIntegrasus").removeClass('animated', 'bounceInUp');
          
         }
@@ -390,6 +381,7 @@ function permanenceActual(sigla) {
     var dt2 = new Date();
     var current_month = (dt2.getMonth() + 1);
     var current_year = (dt2.getFullYear());
+   
     $.ajax({
         type: "get",
         url: "https://indicadores.integrasus.saude.ce.gov.br/api/media-permanencia-geral",
@@ -455,6 +447,26 @@ function txoccupationbed(sigla) {
         }
     });
 }
+function txoccupationbedSelected(sigla, month, year) {
+    var dt2 = new Date();
+    var monthSelect = '0'+month;
+    $.ajax({
+        type: "get",
+        url: "https://indicadores.integrasus.saude.ce.gov.br/api/taxa-ocupacao-leitos",
+
+        dataType: "json",
+        success: function (response) {
+            var permanence = response.content;
+            $.each(permanence, function (indexInArray, permanence) {
+                if (permanence.hospital == sigla && permanence.mes == monthSelect && permanence.ano == year) {
+                    console.log('Taxa de Ocupação dos Leitos - SELECT: ' + permanence.taxaOcupacaoLeitosMes)
+                    $("#info_ocupation_select").html(permanence.taxaOcupacaoLeitosMes.toFixed(2) + '%')
+                    $("#info_ocupation_select").attr('title', monthSelect + '/' + month)
+                }
+            });
+        }
+    });
+}
 //QUANTIDADE DE ATENDIMENTO
 function quantity_attendance_hospital(sigla) {
     var dt2 = new Date();
@@ -486,6 +498,7 @@ function quantity_attendance_hospital(sigla) {
         }
     });
 }
+
 //TAXA DE MORTALIDADE HOSPITALAR
 function txHospitalMortality(sigla) {
     var dt2 = new Date();
@@ -504,6 +517,24 @@ function txHospitalMortality(sigla) {
                     //console.log('Taxa de mortalidadeHospitalar: ' + permanence.mortalidadeHospitalar)
                     $("#info_hospital_mortality").html(permanence.mortalidadeHospitalar.toFixed(2) + '%')
                     $("#info_hospital_mortality").attr('title', current_month + '/' + current_year)
+                }
+            });
+        }
+    });
+}
+function txHospitalMortalitySelect(sigla, month, year) {
+    var monthSelect = '0'+month;
+    $.ajax({
+        type: "get",
+        url: "https://indicadores.integrasus.saude.ce.gov.br/api/taxa-mortalidade",
+        dataType: "json",
+        success: function (response) {           
+            var permanence = response.content;
+            $.each(permanence, function (indexInArray, permanence) {
+                if (permanence.hospital == sigla && permanence.mes == monthSelect && permanence.ano == year) {
+                    //console.log('Taxa de mortalidadeHospitalar: ' + permanence.mortalidadeHospitalar)
+                    $("#info_hospital_mortality_select").html(permanence.mortalidadeHospitalar.toFixed(2) + '%')
+                    $("#info_hospital_mortality_select").attr('title', monthSelect + '/' + year)
                 }
             });
         }
