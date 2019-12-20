@@ -168,7 +168,7 @@
             <option value='2019'>2019</option>
         </select>
         <button class="btn btn-success" id="btnComparativeIntegraSus">Consultar indicador</button>
-        <div class="box animated bounceInUp" id="boxComparativeIntegrasus">
+        <div class="box-indicador animated bounceInUp" id="boxComparativeIntegrasus">
             <div class="box-body" id="bodyComparativeIntegrasus">
                 <ul class="list-group">
                     <li class="list-group-item">
@@ -190,7 +190,7 @@
             </div>
         </div>
     </div>
-    <div class="box" id="iframeBoxIntegrasus">
+    <div class="box-indicador" id="iframeBoxIntegrasus">
     </div>
     <!-- Related Admin Agents BEGIN -->
     <?php $this->part('related-admin-agents.php', array('entity'=>$entity)); ?>
