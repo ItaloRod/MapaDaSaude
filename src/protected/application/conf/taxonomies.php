@@ -21,6 +21,28 @@ return array(
             'MapasCulturais\Entities\Agent'
         ),
         'restricted_terms' => array(
+            \MapasCulturais\i::__("AUTONOMO"),
+            \MapasCulturais\i::__("BOLSISTA"),
+            \MapasCulturais\i::__("CARGO COMISSIONADO"),
+            \MapasCulturais\i::__("CELETISTA"),
+            \MapasCulturais\i::__("CONTRATADO TEMPORARIO OU POR PRAZO/TEMPO DETERMINADO"),
+            \MapasCulturais\i::__("CONTRATADO VERBALMENTE"),
+            \MapasCulturais\i::__("CONTRATO POR PRAZO DETERMINADO"),
+            \MapasCulturais\i::__("COOPERADO"),
+            \MapasCulturais\i::__("EMPREGADO PUBLICO CELETISTA"),
+            \MapasCulturais\i::__("EMPREGO PUBLICO"),
+            \MapasCulturais\i::__("ESTAGIARIO"),
+            \MapasCulturais\i::__("ESTATUTARIO"),
+            \MapasCulturais\i::__("INTERMEDIADO POR EMPRESA PRIVADA"),
+            \MapasCulturais\i::__("PESSOA FISICA"),
+            \MapasCulturais\i::__("PESSOA JURIDICA"),
+            \MapasCulturais\i::__("PROPRIETARIO"),
+            \MapasCulturais\i::__("RESIDENTE"),
+            \MapasCulturais\i::__("SEM INTERMEDIACAO(RPA)"),
+            \MapasCulturais\i::__("SEM TIPO"),
+            \MapasCulturais\i::__("SERVIDOR CEDIDO"),
+            \MapasCulturais\i::__("VINCULO EMPREGATICIO"),
+            \MapasCulturais\i::__("VOLUNTARIADO")
         )
     ),
 
@@ -33,5 +55,17 @@ return array(
 
         'restricted_terms' => array(
         )
-    )
+    ),
+    4 => array(
+        //'slug' => \MapasCulturais\i::__('area'),
+        'slug' => 'vinculo',
+        'required' => \MapasCulturais\i::__("Você deve informar ao menos um vinculo"),
+        'entities' => array(
+            'MapasCulturais\Entities\Agent'
+        ),
+        'restricted_terms' => array(
+            \MapasCulturais\i::__("VINCULO 1"),
+            \MapasCulturais\i::__("VINCULO 2")
+        )
+    ),
 );

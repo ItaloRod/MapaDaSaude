@@ -31,7 +31,13 @@ while ($row = $query1->fetch(PDO::FETCH_OBJ)) {
 }
 
 
-
+$sql = "SELECT DISTINCT vinculo_empregador FROM public.profissionais WHERE vinculo_empregador <> 'N' ORDER BY 1";
+$query1 = $conCnes->query($sql);
+while ($row = $query1->fetch(PDO::FETCH_OBJ)) {
+    $sqlInsert5 = "INSERT INTO public.term (taxonomy, term, description) 
+                    VALUES ('area', '" . $row->vinculo_empregador . "', '" . $row->vinculo_empregador . "')";
+    $conMap->exec($sqlInsert5);
+}
 
 $idAgentTmp = null;
 $sql = "SELECT DISTINCT cns FROM public.profissionais A";
@@ -138,6 +144,22 @@ while ($rowProfissional = $query1->fetch(PDO::FETCH_OBJ)) {
             $sqlInsert6 = "INSERT INTO public.term_relation (term_id, object_type, object_id)  VALUES ('" . $termo->id . "', 'MapasCulturais\Entities\Agent', '" . $idAgent . "')";
             $conMap->exec($sqlInsert6);
         }
+
+        $sql11 = "SELECT DISTINCT vinculo_empregador FROM public.profissionais WHERE vinculo_empregador <> 'N' AND cns = '" . $row->cns . "'";
+        $query11 = $conCnes->query($sql11);
+        while ($rowTerm = $query11->fetch(PDO::FETCH_OBJ)) {
+            $sqlTerm = "SELECT * FROM public.term WHERE term = '" . $rowTerm->vinculo_empregador . "'";
+            $resultTerm = $conMap->prepare($sqlTerm);
+            $resultTerm->execute();
+            $termo = $resultTerm->fetch(PDO::FETCH_OBJ);
+
+            $sqlInsert6 = "INSERT INTO public.term_relation (term_id, object_type, object_id)  VALUES ('" . $termo->id . "', 'MapasCulturais\Entities\Agent', '" . $idAgent . "')";
+            $conMap->exec($sqlInsert6);
+        }
+
+
+
+
 
         $sql12 = "SELECT id FROM public.space WHERE name = '" . $row->estabelecimento . "'";
         $query12 = $conMap->query($sql12);
