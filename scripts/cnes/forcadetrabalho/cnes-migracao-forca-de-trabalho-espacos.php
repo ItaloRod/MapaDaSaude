@@ -77,7 +77,7 @@ while ($row = $query1->fetch(PDO::FETCH_OBJ)) {
 
 
         $data = date('Y-m-d H:i:s');
-        $idAgenteResponsavel = 365449; //mudar esse valor, pois é baseado no agente
+        $idAgenteResponsavel = 492509; //mudar esse valor, pois é baseado no agente
         $sqlInsert = "INSERT INTO public.space (location, _geo_location, name, short_description, long_description, create_timestamp, status, type, is_verified, public, agent_id) 
                         VALUES ('" . $location . "', '0101000020E610000000000008A63E43C090B78B3B9BCF0DC0', '" . $row->nome_fantasia . "', '" . $row->nome_fantasia . "', '" . $row->nome_fantasia . "', '" . $data . "', 1, '" . $idTipo ."', 'FALSE', 'FALSE', '" . $idAgenteResponsavel ."')";
         $conMap->exec($sqlInsert);
