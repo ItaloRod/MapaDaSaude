@@ -1988,9 +1988,18 @@ class Theme extends MapasCulturais\Theme {
         $this->jsObject['notification_type'] = $app->getRegisteredMetadata('MapasCulturais\Entities\Notification');
     }
 
-    protected function _getFilters(){
+    protected function _getFilters() {
         $filters = [
             'space' => [
+                'En_Municipio' => [
+                    'label' => i::__('Municípios'),
+                    'placeholder' => i::__('Selecione os municípios'),
+                    'type' => 'metadata',
+                    'filter' => [
+                        'param' => 'En_Municipio',
+                        'value' => 'IN({val})'
+                    ]
+                ],
                 'tipos' => [
                     'label' => i::__('Tipos'),
                     'placeholder' => i::__('Selecione os tipos'),
@@ -2014,6 +2023,15 @@ class Theme extends MapasCulturais\Theme {
                 ]
             ],
             'agent' => [
+                'En_Municipio' => [
+                    'label' => i::__('Municípios'),
+                    'placeholder' => i::__('Selecione os municípios'),
+                    'type' => 'metadata',
+                    'filter' => [
+                        'param' => 'En_Municipio',
+                        'value' => 'IN({val})'
+                    ]
+                ],
                 'area' => [
                     'label'=> i::__('Área de Atuação'),
                     'placeholder' =>i::__( 'Selecione as áreas'),
