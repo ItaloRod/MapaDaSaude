@@ -55,17 +55,5 @@ return array(
 
         'restricted_terms' => array(
         )
-    ),
-    4 => array(
-        //'slug' => \MapasCulturais\i::__('area'),
-        'slug' => 'vinculo',
-        'required' => \MapasCulturais\i::__("Você deve informar ao menos um vinculo"),
-        'entities' => array(
-            'MapasCulturais\Entities\Agent'
-        ),
-        'restricted_terms' => array(
-            \MapasCulturais\i::__("VINCULO 1"),
-            \MapasCulturais\i::__("VINCULO 2")
-        )
-    ),
+    )
 );
