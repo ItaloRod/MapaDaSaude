@@ -1,7 +1,7 @@
 <p ng-if="!data.isEditable && data.entity.registrationRulesFile"><a class="btn btn-default download" href="{{data.entity.registrationRulesFile.url}}" target="_blank"><?php \MapasCulturais\i::_e("Baixar o regulamento");?></a></p>
 <div ng-if="data.isEditable" class="registration-fieldset">
     <h4><?php \MapasCulturais\i::_e("Regulamento");?></h4>
-
+   
     <?php if ($this->controller->action == 'create'): ?>
         <p class="allert warning"><?php \MapasCulturais\i::_e("Antes de subir o regulamento é preciso salvar o projeto.");?></p>
 

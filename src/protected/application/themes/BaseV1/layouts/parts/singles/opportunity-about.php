@@ -1,4 +1,5 @@
 <?php
+
 $editEntity = $this->controller->action === 'create' || $this->controller->action === 'edit';
 ?>
 

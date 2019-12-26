@@ -65,3 +65,28 @@
 }
 .box-indicador{position:relative;border-radius:3px;background:#ffffff;border-top:3px solid #d2d6de;margin-bottom:20px;width:100%;box-shadow:0 1px 1px rgba(0,0,0,0.1)}
 .text-danger{color:#a94442}a.text-danger:hover{color:#843534}
+.form-control{
+    display:block;
+    width:100%;
+    height:34px;
+    padding:2px 12px !important;
+    font-size:14px;
+    line-height:1.42857143 !important;
+    color:#555;
+    background-color:#fff;
+    background-image:none;
+    border:1px solid #ccc !important;
+    border-radius:4px !important;
+    // -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);
+    // box-shadow:inset 0 1px 1px rgba(0,0,0,.075);
+    // -webkit-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    // -o-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    // -webkit-transition:border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    // transition:border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    // transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    // transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s
+}
+//para alterar o formato do cursor nos campos de oportunidade
+span {
+    cursor: pointer
+}

@@ -744,7 +744,7 @@ module.controller('OpportunityEventsController', ['$scope', '$rootScope', '$time
 
 module.controller('RegistrationFieldsController', ['$scope', '$rootScope', '$interval', '$timeout', 'RegistrationService', 'RegistrationConfigurationService', 'EditBox', '$http', 'UrlService', function ($scope, $rootScope, $interval, $timeout, RegistrationService, RegistrationConfigurationService, EditBox, $http, UrlService) {
     var registrationsUrl = new UrlService('registration');
-
+    console.log('RegistrationFieldsController')
     var labels = MapasCulturais.gettext.moduleOpportunity;
 
     $scope.uploadUrl = registrationsUrl.create('upload', MapasCulturais.entity.id);
@@ -756,16 +756,15 @@ module.controller('RegistrationFieldsController', ['$scope', '$rootScope', '$int
     $scope.data = {
         fileConfigurations: MapasCulturais.entity.registrationFileConfigurations
     };
-
+   
     $scope.data.fileConfigurations.forEach(function(item){
         item.file = MapasCulturais.entity.registrationFiles[item.groupName];
     });
-
-
+    
     $scope.data.fields = RegistrationService.getFields();
     $scope.data.fieldsRequiredLabel = labels['requiredLabel'];
     $scope.data.fieldsOptionalLabel = labels['optionalLabel'];
-
+   
     var fieldsByName = {};
     $scope.data.fields.forEach(function(e){
         fieldsByName[e.fieldName] = e;
@@ -773,7 +772,9 @@ module.controller('RegistrationFieldsController', ['$scope', '$rootScope', '$int
 
     function initEditables(){
         jQuery('.js-editable-field').each(function(){
+            
             var field = fieldsByName[this.id];
+           
             if(field && field.fieldOptions){
                 var cfg = {};
                 cfg.source = field.fieldOptions.map(function(e){ return {value: e, text: e}; });
@@ -781,6 +782,9 @@ module.controller('RegistrationFieldsController', ['$scope', '$rootScope', '$int
                 if(field.fieldType === "date"){
                     cfg.datepicker = {weekStart: 1, yearRange: jQuery(this).data('yearrange') ? jQuery(this).data('yearrange') : "1900:+0"};
                 }
+                console.log(field.fieldType)
+                console.log(cfg)
+
                 jQuery(this).editable(cfg);
             } else {
                 jQuery(this).editable();
