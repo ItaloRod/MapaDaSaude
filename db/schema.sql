@@ -559,7 +559,7 @@ CREATE TABLE agent_meta (
     object_id integer NOT NULL,
     key character varying(128) NOT NULL,
     value text,
-    id integer NOT NULL
+    id serial NOT NULL
 );
 
 
@@ -1273,7 +1273,7 @@ CREATE TABLE space_meta (
     object_id integer NOT NULL,
     key character varying(128) NOT NULL,
     value text,
-    id integer NOT NULL
+    id serial NOT NULL
 );
 
 
