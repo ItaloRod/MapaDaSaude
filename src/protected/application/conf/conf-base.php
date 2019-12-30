@@ -404,6 +404,7 @@ return array(
             'instalacao'    => array('subsite', 'single'),
             'selo'          => array('seal', 'single'),
             'sair'          => array('auth', 'logout'),
+            //'indicador'     => array('indicador', 'index'),
             'busca'         => array('site', 'search'),
             'sobre'         => array('site', 'page', array('sobre')),
             'como-usar'     => array('site', 'page', array('como-usar')),
