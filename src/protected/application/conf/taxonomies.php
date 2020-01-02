@@ -15,7 +15,7 @@ return array(
     2 => array(
         //'slug' => \MapasCulturais\i::__('area'),
         'slug' => 'area',
-        'required' => \MapasCulturais\i::__("Você deve informar ao menos uma área de atuação"),
+        //'required' => \MapasCulturais\i::__("Você deve informar ao menos uma área de atuação"),
         'entities' => array(
             'MapasCulturais\Entities\Space',
             'MapasCulturais\Entities\Agent'

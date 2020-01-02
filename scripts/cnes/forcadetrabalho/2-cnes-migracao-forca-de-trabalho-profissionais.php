@@ -66,6 +66,8 @@ while ($rowProfissional = $query1->fetch(PDO::FETCH_OBJ)) {
         $nomePessoa = str_replace("'", "", strtoupper($row->nome));
         $descricao = utf8_encode('Profissional de saúde');
 
+        echo 'Profissional:' . $nomePessoa . PHP_EOL;
+
         if ($row->longitude != null) {
             $location = '(' . $row->longitude . ', ' . $row->latitude . ')';
         } else {
@@ -92,45 +94,27 @@ while ($rowProfissional = $query1->fetch(PDO::FETCH_OBJ)) {
             $idAgent = $conMap->lastInsertId();
         }
 
-        $stmt = $conMap->prepare("SELECT A.id FROM public.agent_meta A ORDER BY A.id DESC LIMIT 1");
-        $stmt->execute();
-        $row1 = $stmt->fetch();
         $sqlInsertMeta2 = "INSERT INTO public.agent_meta (object_id, key, value) VALUES ('" . $idAgent . "', 'En_CEP', '" . $row->cep . "'  )";
         $conMap->exec($sqlInsertMeta2);
 
 
-        $stmt = $conMap->prepare("SELECT A.id FROM public.agent_meta A ORDER BY A.id DESC LIMIT 1");
-        $stmt->execute();
-        $row1 = $stmt->fetch();
         $sqlInsertMeta3 = "INSERT INTO public.agent_meta (object_id, key, value) VALUES ('" . $idAgent . "', 'En_Nome_Logradouro', '" . $row->logradouro . "'  )";
         $conMap->exec($sqlInsertMeta3);
 
-
-        $stmt = $conMap->prepare("SELECT A.id FROM public.agent_meta A ORDER BY A.id DESC LIMIT 1");
-        $stmt->execute();
-        $row1 = $stmt->fetch();
         $sqlInsertMeta4 = "INSERT INTO public.agent_meta (object_id, key, value) VALUES ('" . $idAgent . "', 'En_Num', '" . $row->numero . "' )";
         $conMap->exec($sqlInsertMeta4);
 
-
-        $stmt = $conMap->prepare("SELECT A.id FROM public.agent_meta A ORDER BY A.id DESC LIMIT 1");
-        $stmt->execute();
-        $row1 = $stmt->fetch();
         $sqlInsertMeta5 = "INSERT INTO public.agent_meta (object_id, key, value) VALUES ('" . $idAgent . "', 'En_Bairro', '" . $row->bairro . "' )";
         $conMap->exec($sqlInsertMeta5);
 
-
-        $stmt = $conMap->prepare("SELECT A.id FROM public.agent_meta A ORDER BY A.id DESC LIMIT 1");
-        $stmt->execute();
-        $row1 = $stmt->fetch();
         $sqlInsertMeta6 = "INSERT INTO public.agent_meta (object_id, key, value) VALUES ('" . $idAgent . "', 'En_Municipio', '" . $row->municipio . "' )";
         $conMap->exec($sqlInsertMeta6);
 
-        $stmt = $conMap->prepare("SELECT A.id FROM public.agent_meta A ORDER BY A.id DESC LIMIT 1");
-        $stmt->execute();
-        $row1 = $stmt->fetch();
         $sqlInsertMeta7 = "INSERT INTO public.agent_meta (object_id, key, value) VALUES ('" . $idAgent . "', 'En_Estado', '" . $row->uf . "' )";
         $conMap->exec($sqlInsertMeta7);
+
+        $sqlInsertMeta8 = "INSERT INTO public.agent_meta (object_id, key, value) VALUES ('" . $idAgent . "', 'documento', '" . $row->cpf . "' )";
+        $conMap->exec($sqlInsertMeta8);
 
 
         $sql11 = "SELECT DISTINCT cbodescricao FROM public.profissionais A WHERE cbodescricao <> '' AND A.cns = '" . $row->cns . "' AND A.cbodescricao = '" . $row->cbodescricao . "'";
