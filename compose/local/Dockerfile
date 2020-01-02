@@ -3,7 +3,7 @@ FROM php:7.2-cli
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl libcurl4-gnutls-dev locales imagemagick libmagickcore-dev libmagickwand-dev zip \
         ruby ruby-dev libpq-dev gnupg nano iputils-ping git \
-        libfreetype6-dev libjpeg62-turbo-dev libpng-dev
+        libfreetype6-dev libjpeg62-turbo-dev libpng-dev libxml2-dev
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
     && apt-get install -y nodejs npm
@@ -18,7 +18,7 @@ RUN npm install -g \
 RUN gem install sass -v 3.4.22
 
 # Install extensions
-RUN docker-php-ext-install opcache pdo_pgsql zip xml curl json
+RUN docker-php-ext-install opcache pdo_pgsql zip xml curl json soap
 
 # Install GD
 RUN docker-php-ext-install -j$(nproc) iconv \
