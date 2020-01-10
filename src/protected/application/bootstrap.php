@@ -1,4 +1,7 @@
 <?php
+
+ini_set('memory_limit', '8096M');
+
 define('BASE_PATH', realpath(__DIR__ . '/../../') . '/');
 define('PROTECTED_PATH', realpath(__DIR__ . '/../') . '/');
 define('APPLICATION_PATH', realpath(__DIR__) . '/');

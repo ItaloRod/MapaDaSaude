@@ -726,6 +726,8 @@ class App extends \Slim\Slim{
 
         // register controllers
 
+        $this->registerController('indicadores',    'MapasCulturais\Controllers\Indicadores');
+
         $this->registerController('site',    'MapasCulturais\Controllers\Site');
         $this->registerController('auth',    'MapasCulturais\Controllers\Auth');
         $this->registerController('panel',   'MapasCulturais\Controllers\Panel');
