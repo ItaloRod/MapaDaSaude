@@ -56,7 +56,7 @@ return array_merge($config,
 
         'plugins.enabled' => array('agenda-singles', 'endereco'),
 
-        'auth.provider' => 'Fake',
+        'auth.provider' => 'OpauthLoginCidadao',
 
         // Token da API de Cep
         // Adquirido ao fazer cadastro em http://www.cepaberto.com/

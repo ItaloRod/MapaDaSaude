@@ -1,4 +1,4 @@
 <?php
 return [
-    'auth.provider' => '\MultipleLocalAuth\Provider'
+    'auth.provider' => 'OpauthLoginCidadao'
 ];

@@ -174,3 +174,12 @@
     </ul>
     <!--.menu.session-menu-->
 </nav>
+
+<script language="javascript" type="text/javascript">
+    function logoutForce() {
+        window.open('http://logincidadao.esp.ce.gov.br/logout', '_blank');
+        var oldURL = document.referrer;
+        alert("Logout efetuado com sucesso!");
+        location.reload();
+    }
+</script>

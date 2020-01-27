@@ -352,6 +352,7 @@ return array(
 
     // if authprovider namespace is outside MapasCulturais\AuthProvider set the full namespace with the initial slash ex: \Full\Name\Space\AuthProvider
     //*
+    /*
     'auth.provider' => '\MultipleLocalAuth\Provider',
     'auth.config' => array(
         'salt' => env('AUTH_SALT', null),
@@ -363,8 +364,18 @@ return array(
                 'scope' => env('AUTH_FACEBOOK_SCOPE', 'email'),
             )
         ]
-    ),
+    ),*/
     // */
+
+    'auth.provider' => 'OpauthLoginCidadao',
+    'auth.config' => array(
+        'client_id' => '15_2sz1zdkmq2ioc0s0gk4800go48g000sccgwg88s0wg8c4wcgks',
+        'client_secret' => '3k9o1zdfdvcwko0wgkkgwso44ckkwcg48ssg44wgcksskks8w0',
+        'auth_endpoint' => 'http://logincidadao.esp.ce.gov.br/oauth/v2/auth',
+        'token_endpoint' => 'http://logincidadao.esp.ce.gov.br/oauth/v2/token',
+        'user_info_endpoint' => 'http://logincidadao.esp.ce.gov.br/api/v1/person.json'
+    ),
+
 
     'plugins.enabled' => array(
 
